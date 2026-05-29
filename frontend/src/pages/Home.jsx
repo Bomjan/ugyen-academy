@@ -1,7 +1,41 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Marquee from "../components/Marquee";
 import { useReveal } from "../hooks/useReveal";
+
+const WILL = ["Winners", "Innovators", "Learners", "Leaders"];
+
+function WillCycle() {
+  const [idx, setIdx]       = useState(0);
+  const [exiting, setExiting] = useState(false);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setExiting(true);
+      setTimeout(() => { setIdx(i => (i + 1) % 4); setExiting(false); }, 300);
+    }, 2200);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center gap-2 mb-10 overflow-hidden">
+      <span className="text-white/30 text-[13px] font-medium shrink-0">A School of</span>
+      <span
+        key={exiting ? `out-${idx}` : `in-${idx}`}
+        className="text-[13px] font-semibold tracking-wide"
+        style={{
+          color: "#F65D06",
+          display: "inline-block",
+          animation: exiting
+            ? "wordOut .3s ease forwards"
+            : "wordIn .38s cubic-bezier(.16,1,.3,1) forwards",
+        }}>
+        {WILL[idx]}
+      </span>
+    </div>
+  );
+}
 
 function R({ children, d = "", className = "" }) {
   const [ref, on] = useReveal();
@@ -42,17 +76,7 @@ export default function Home() {
     <div>
       <section className="relative min-h-screen bg-dark flex flex-col items-center justify-center text-center px-6 pt-14">
         <div className="max-w-4xl mx-auto">
-          {/* WILL */}
-          <div className="flex flex-col items-center gap-1.5 mb-10">
-            {[["Winners","Innovators"],["Learners","Leaders"]].map((pair, row) => (
-              <div key={row} className="flex items-center gap-3"
-                style={{animation:`fadeUp .4s ${.1 + row*.15}s both`}}>
-                <span className="text-white/70 font-medium text-[13px] tracking-wide">{pair[0]}</span>
-                <span className="text-[9px]" style={{color:"#F65D06"}}>✦</span>
-                <span className="text-white/70 font-medium text-[13px] tracking-wide">{pair[1]}</span>
-              </div>
-            ))}
-          </div>
+          <WillCycle />
 
           <h1
             className="font-black text-white leading-none tracking-[-0.05em] mb-5"
