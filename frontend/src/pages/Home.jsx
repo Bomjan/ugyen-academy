@@ -23,13 +23,13 @@ function WillCycle() {
       <span className="text-white/30 text-[13px] font-medium shrink-0">A School of</span>
       <span
         key={exiting ? `out-${idx}` : `in-${idx}`}
-        className="text-[13px] font-semibold tracking-wide"
+        className="font-wordmark font-bold text-[15px]"
         style={{
           color: "#F65D06",
           display: "inline-block",
           animation: exiting
-            ? "wordOut .3s ease forwards"
-            : "wordIn .38s cubic-bezier(.16,1,.3,1) forwards",
+            ? "wordOut .28s ease forwards"
+            : "wordIn .42s cubic-bezier(.16,1,.3,1) forwards",
         }}>
         {WILL[idx]}
       </span>
