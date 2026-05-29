@@ -11,8 +11,13 @@ module.exports = {
         border:    "#E5E5EA",
         text:      "#1D1D1F",
         muted:     "#6E6E73",
-        accent:    "#0066CC",
-        "accent-h":"#0077ED",
+        accent:    "#F65D06",   /* exact logo orange — name band (#F65D06)       */
+        "accent-h":"#FF6B10",   /* hover — slightly brighter orange              */
+        gold:      "#FDF002",   /* exact logo yellow — outer ring (#FDF002)      */
+        "gold-lt": "#FEF84D",   /* lighter yellow — hover states                 */
+        orange:    "#F65D06",   /* alias for accent                              */
+        navy:      "#00004A",   /* logo outline navy                             */
+        "sky-lt":  "#B8CCE0",   /* pale sky — muted text on hero dark bg         */
       },
       fontFamily: {
         sans:    ["'Inter'",            "system-ui", "sans-serif"],

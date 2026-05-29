@@ -34,7 +34,7 @@ export default function StudentAnnouncements() {
         ) : (
           <div className="space-y-3">
             {sorted.map((a, i) => (
-              <div key={a._id || i} className={`bg-dark-2 border rounded-2xl p-5 ${a.pinned ? 'border-[#0066CC]/30' : 'border-white/[0.05]'}`}>
+              <div key={a._id || i} className={`bg-dark-2 border rounded-2xl p-5 ${a.pinned ? 'border-accent/30' : 'border-white/[0.05]'}`}>
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2 min-w-0">
                     {a.pinned && <Pin size={13} className="text-accent flex-shrink-0 mt-0.5" />}

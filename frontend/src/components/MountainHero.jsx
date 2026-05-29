@@ -24,6 +24,7 @@ function Stars() {
             left: `${s.x}%`, top: `${s.y}%`,
             width: `${s.r}px`, height: `${s.r}px`,
             opacity: s.op,
+            "--op": s.op,
             animation: `twinkle ${s.dur} ${s.del} ease-in-out infinite`,
           }}
         />
@@ -88,10 +89,56 @@ export default function MountainHero() {
           </span>
         </h1>
 
-        <p className="text-white/55 text-lg leading-relaxed max-w-md mb-10 opacity-0"
-          style={{animation:"up .6s .5s ease-out forwards"}}>
-          Bhutan's premier private school — where scholars, athletes, and leaders are made.
-        </p>
+        {/* WILL — staggered pillar reveal */}
+        <div className="mb-10 opacity-0" style={{animation:"up .5s .42s ease-out forwards"}}>
+          <p className="text-white/25 text-[9px] tracking-[0.35em] uppercase font-semibold mb-7 flex items-center justify-center gap-3">
+            <span className="w-6 h-px bg-white/15" />
+            A School of WILL
+            <span className="w-6 h-px bg-white/15" />
+          </p>
+
+          <div className="grid grid-cols-4 gap-4 sm:gap-8 md:gap-12 max-w-lg mx-auto">
+            {[
+              { l:"W", word:"Winners",    line:"Rise through challenge"  },
+              { l:"I", word:"nnovators",  line:"Build what isn't yet"    },
+              { l:"L", word:"earners",    line:"Stay curious always"     },
+              { l:"L", word:"eaders",     line:"Shape what comes next"   },
+            ].map(({ l, word, line }, i) => (
+              <div key={i}
+                className="flex flex-col items-center gap-1 opacity-0"
+                style={{ animation:`up .55s ${.48+i*.11}s cubic-bezier(.16,1,.3,1) forwards` }}>
+
+                {/* Big gradient letter */}
+                <span className="font-black leading-none select-none" style={{
+                  fontSize:"clamp(2rem,5.5vw,3.6rem)",
+                  background:"linear-gradient(160deg,#F5C800 0%,#C8920A 100%)",
+                  WebkitBackgroundClip:"text",
+                  WebkitTextFillColor:"transparent",
+                  backgroundClip:"text",
+                  filter:"drop-shadow(0 0 18px rgba(200,146,10,0.45))",
+                }}>
+                  {l}
+                </span>
+
+                {/* Thin gold rule */}
+                <div className="w-4 h-px my-0.5"
+                  style={{background:"linear-gradient(90deg,transparent,rgba(245,200,0,0.5),transparent)"}} />
+
+                {/* Full word — first letter bold */}
+                <span className="text-white/60 tracking-[0.12em] uppercase font-semibold"
+                  style={{fontSize:"clamp(9px,1.4vw,11px)"}}>
+                  {l}{word}
+                </span>
+
+                {/* Tagline */}
+                <span className="text-white/22 text-[8px] sm:text-[9px] tracking-wide text-center leading-tight hidden xs:block">
+                  {line}
+                </span>
+
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-3 opacity-0"
           style={{animation:"up .5s .65s ease-out forwards"}}>

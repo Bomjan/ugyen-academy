@@ -98,7 +98,7 @@ export default function ParentProgress() {
                             </div>
                             <div className="flex items-center gap-3">
                               <div className="flex-1 bg-white/5 rounded-full h-1.5">
-                                <div className="h-1.5 rounded-full bg-[#0066CC]/60" style={{ width: `${Math.max(4, avg)}%` }} />
+                                <div className="h-1.5 rounded-full bg-accent/60" style={{ width: `${Math.max(4, avg)}%` }} />
                               </div>
                               <span className="text-white font-bold text-sm w-10 text-right">{avg}%</span>
                             </div>
