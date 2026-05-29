@@ -24,9 +24,10 @@ export default function TeacherAttendance() {
   useEffect(() => {
     api.get('/users/students/all')
       .then(r => {
-        setStudents(r.data);
+        const list = r.data.data ?? r.data;
+        setStudents(list);
         const init = {};
-        r.data.forEach(s => { init[s._id] = 'Present'; });
+        list.forEach(s => { init[s._id] = 'Present'; });
         setAttendance(init);
       })
       .catch(() => {})

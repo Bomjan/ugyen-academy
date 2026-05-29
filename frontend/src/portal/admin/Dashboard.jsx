@@ -19,13 +19,16 @@ export default function AdminDashboard() {
     ]).then(([studentsRes, teachersRes, feesRes, announcementsRes]) => {
       const feesData = Array.isArray(feesRes.data) ? feesRes.data : [];
       const pending = feesData.filter(f => f.status !== 'paid').reduce((s, f) => s + (f.amount || 0), 0);
+      const students = studentsRes.data.data ?? studentsRes.data;
+      const teachers = teachersRes.data.data ?? teachersRes.data;
+      const announcements = announcementsRes.data.data ?? announcementsRes.data;
       setStats({
-        students: studentsRes.data.length,
-        teachers: teachersRes.data.length,
+        students: students.length,
+        teachers: teachers.length,
         pendingFees: pending,
-        announcements: announcementsRes.data.length
+        announcements: announcements.length
       });
-      const sorted = [...announcementsRes.data].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+      const sorted = [...announcements].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
       setRecentAnnouncements(sorted.slice(0, 3));
     }).finally(() => setLoading(false));
   }, []);

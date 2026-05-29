@@ -38,7 +38,7 @@ export default function TeacherProgress() {
   useEffect(() => {
     setLoading(true);
     api.get('/users/students/all')
-      .then(r => setStudents(r.data))
+      .then(r => setStudents(r.data.data ?? r.data))
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
