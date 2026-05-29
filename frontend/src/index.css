@@ -19,6 +19,11 @@ body {
 .reveal.on { opacity:1; transform:none; }
 .d1{transition-delay:.05s}.d2{transition-delay:.12s}.d3{transition-delay:.20s}.d4{transition-delay:.30s}
 
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
 @keyframes menuSlideUp {
   from { opacity:0; transform:translateY(24px); }
   to   { opacity:1; transform:translateY(0); }

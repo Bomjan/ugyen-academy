@@ -42,10 +42,54 @@ export default function Home() {
     <div>
       <section className="relative min-h-screen bg-dark flex flex-col items-center justify-center text-center px-6 pt-14">
         <div className="max-w-4xl mx-auto">
-          <span className="inline-flex items-center gap-2 border border-white/[0.06] rounded-full px-3.5 py-1.5 text-[12px] text-white/50 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            Bhutan's Premier School · Est. 2002
-          </span>
+          {/* WILL acronym */}
+          <div className="mb-10" style={{animation:"fadeUp .6s .1s both"}}>
+            <p className="text-white/25 text-[9px] tracking-[0.35em] uppercase font-semibold mb-6 flex items-center justify-center gap-3">
+              <span className="w-8 h-px bg-white/10" />
+              A School of WILL
+              <span className="w-8 h-px bg-white/10" />
+            </p>
+            <div className="flex items-start justify-center gap-6 sm:gap-10 md:gap-14">
+              {[
+                { l:"W", rest:"inners",    tagline:"Compete to excel"   },
+                { l:"I", rest:"nnovators", tagline:"Build tomorrow"      },
+                { l:"L", rest:"earners",   tagline:"Stay curious"        },
+                { l:"L", rest:"eaders",    tagline:"Lead with purpose"   },
+              ].map(({ l, rest, tagline }, i) => (
+                <div key={i} className="flex flex-col items-center gap-1.5"
+                  style={{animation:`fadeUp .5s ${.15 + i*.1}s both`}}>
+
+                  {/* Giant gradient letter */}
+                  <span className="font-black leading-none select-none"
+                    style={{
+                      fontSize:"clamp(2.2rem,5vw,3.5rem)",
+                      background:"linear-gradient(160deg,#F5C800 0%,#C4943B 100%)",
+                      WebkitBackgroundClip:"text",
+                      WebkitTextFillColor:"transparent",
+                      backgroundClip:"text",
+                      filter:"drop-shadow(0 0 20px rgba(196,148,59,0.5))",
+                    }}>
+                    {l}
+                  </span>
+
+                  {/* thin gold rule */}
+                  <div className="w-5 h-px"
+                    style={{background:"linear-gradient(90deg,transparent,rgba(196,148,59,0.6),transparent)"}} />
+
+                  {/* full word */}
+                  <span className="text-white/55 font-semibold tracking-[0.1em] uppercase"
+                    style={{fontSize:"clamp(9px,1.2vw,11px)"}}>
+                    {l}{rest}
+                  </span>
+
+                  {/* tagline — hidden on tiny screens */}
+                  <span className="text-white/20 text-[9px] tracking-wide hidden sm:block">
+                    {tagline}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
           <h1
             className="font-black text-white leading-none tracking-[-0.05em] mb-5"
