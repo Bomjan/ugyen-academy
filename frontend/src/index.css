@@ -19,6 +19,28 @@ body {
 .reveal.on { opacity:1; transform:none; }
 .d1{transition-delay:.05s}.d2{transition-delay:.12s}.d3{transition-delay:.20s}.d4{transition-delay:.30s}
 
+/* ── Hero animations ────────────────────────────── */
+@keyframes up {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0);    }
+}
+@keyframes twinkle {
+  0%,100% { opacity:var(--op,0.2); }
+  50%      { opacity:0.04; }
+}
+
+/* ── Hero sky gradient ───────────────────────────── */
+.sky-grad {
+  background: linear-gradient(180deg,
+    #02040e 0%,
+    #050b1e 20%,
+    #081428 45%,
+    #0c1a2f 65%,
+    #131d28 85%,
+    #171f2a 100%
+  );
+}
+
 @keyframes menuSlideUp {
   from { opacity:0; transform:translateY(24px); }
   to   { opacity:1; transform:translateY(0); }
