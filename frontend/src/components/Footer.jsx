@@ -7,8 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-10 pb-10 border-b border-white/[0.05]">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <span className="flex items-center justify-center w-7 h-7 rounded-md bg-white text-dark text-[11px] font-black select-none">UA</span>
-              <span className="font-wordmark font-bold text-[15px] text-white tracking-tight">Ugyen Academy</span>
+              <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-auto object-contain rounded-sm" />
             </div>
             <p className="text-[13px] text-white/30 leading-relaxed">
               Bhutan's premier private higher secondary school. Nurturing excellence since 2002.
