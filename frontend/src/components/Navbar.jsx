@@ -38,7 +38,8 @@ export default function Navbar() {
         <div className="wrap flex items-center justify-between h-14">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-auto object-contain rounded-sm" />
+            <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-8 object-cover rounded-full shrink-0" />
+            <span className={`font-wordmark font-bold text-[15px] tracking-tight transition-colors duration-200 ${isDark ? "text-white" : "text-text"}`}>Ugyen Academy</span>
           </Link>
 
           {/* Desktop nav */}
@@ -83,7 +84,8 @@ export default function Navbar() {
           {/* Top bar */}
           <div className="flex items-center justify-between px-5 py-5 shrink-0">
             <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
-              <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-auto object-contain rounded-sm" />
+              <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-8 object-cover rounded-full shrink-0" />
+            <span className={`font-wordmark font-bold text-[15px] tracking-tight transition-colors duration-200 ${isDark ? "text-white" : "text-text"}`}>Ugyen Academy</span>
             </Link>
             <button onClick={() => setOpen(false)}
               className="w-9 h-9 flex items-center justify-center rounded-full bg-white/8 text-white/50 hover:text-white hover:bg-white/12 transition-all">

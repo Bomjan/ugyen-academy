@@ -41,7 +41,8 @@ export default function Login() {
           style={{ background: "radial-gradient(ellipse 60% 40% at 40% 30%, rgba(0,102,204,0.07) 0%, transparent 70%)" }} />
 
         <Link to="/" className="flex items-center gap-3 group relative z-10">
-          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-10 w-auto object-contain rounded-sm" />
+          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-10 w-10 object-cover rounded-full shrink-0" />
+          <span className="font-wordmark font-bold text-[18px] text-white tracking-tight">Ugyen Academy</span>
         </Link>
 
         <div className="relative z-10 space-y-6">
@@ -70,7 +71,8 @@ export default function Login() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 bg-dark">
         {/* Mobile logo */}
         <Link to="/" className="lg:hidden flex items-center gap-2.5 mb-10">
-          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-9 w-auto object-contain rounded-sm" />
+          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-9 w-9 object-cover rounded-full shrink-0" />
+          <span className="font-wordmark font-bold text-[16px] text-white tracking-tight">Ugyen Academy</span>
         </Link>
 
         <div className="w-full max-w-[360px]">

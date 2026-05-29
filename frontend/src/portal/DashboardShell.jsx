@@ -52,7 +52,8 @@ function SidebarContent({ user, nav, location, onNav, onLogout }) {
       <div className="h-[2px] bg-accent shrink-0" />
       <div className="px-5 py-4 shrink-0">
         <Link to="/" className="flex items-center gap-2" onClick={onNav}>
-          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-auto object-contain rounded-sm" />
+          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-8 w-8 object-cover rounded-full shrink-0" />
+          <span className="font-wordmark font-bold text-[15px] text-white tracking-tight">Ugyen Academy</span>
         </Link>
       </div>
       <div className="mx-3 mb-2 bg-white/[0.04] border border-white/[0.05] rounded-xl px-3.5 py-3 shrink-0">
@@ -179,7 +180,8 @@ export default function DashboardShell({ children }) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile topbar — minimal: just the school name + avatar */}
         <div className="md:hidden flex items-center justify-between px-5 py-3.5 bg-dark-2 border-b border-white/[0.05]">
-          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-7 w-auto object-contain rounded-sm" />
+          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-7 w-7 object-cover rounded-full shrink-0" />
+          <span className="font-wordmark font-bold text-[14px] text-white tracking-tight">Ugyen Academy</span>
           <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
             <span className="text-accent text-[11px] font-bold">{user?.name?.[0]?.toUpperCase()}</span>
           </div>
