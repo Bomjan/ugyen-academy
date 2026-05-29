@@ -42,10 +42,25 @@ export default function Home() {
     <div>
       <section className="relative min-h-screen bg-dark flex flex-col items-center justify-center text-center px-6 pt-14">
         <div className="max-w-4xl mx-auto">
-          <span className="inline-flex items-center gap-2 border border-white/[0.06] rounded-full px-3.5 py-1.5 text-[12px] text-white/50 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            Bhutan's Premier School · Est. 2002
-          </span>
+          {/* WILL — single line word reveal */}
+          <div className="flex items-center justify-center flex-wrap gap-x-3 gap-y-2 mb-10">
+            {["Winners","Innovators","Learners","Leaders"].map((word, i) => (
+              <>
+                <span key={word}
+                  className="text-white/70 font-medium text-[13px] tracking-wide"
+                  style={{animation:`fadeUp .4s ${.1 + i*.12}s both`}}>
+                  {word}
+                </span>
+                {i < 3 && (
+                  <span key={`dot-${i}`}
+                    className="text-[10px]"
+                    style={{color:"#F65D06", animation:`fadeUp .4s ${.16 + i*.12}s both`}}>
+                    ✦
+                  </span>
+                )}
+              </>
+            ))}
+          </div>
 
           <h1
             className="font-black text-white leading-none tracking-[-0.05em] mb-5"
