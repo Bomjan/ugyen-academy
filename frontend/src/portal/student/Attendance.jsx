@@ -39,7 +39,7 @@ export default function StudentAttendance() {
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-            <div className="md:col-span-2 bg-dark-2 border border-white/8 rounded-2xl p-6 flex flex-col items-center justify-center">
+            <div className="md:col-span-2 bg-dark-2 border border-white/[0.05] rounded-2xl p-6 flex flex-col items-center justify-center">
               <svg width="100" height="100" className="mb-3">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff10" strokeWidth="8" />
                 <circle cx="50" cy="50" r="40" fill="none" stroke={pct >= 75 ? '#22c55e' : pct >= 60 ? '#f59e0b' : '#ef4444'} strokeWidth="8" strokeDasharray={circumference} strokeDashoffset={dashOffset} strokeLinecap="round" transform="rotate(-90 50 50)" />
@@ -54,7 +54,7 @@ export default function StudentAttendance() {
                 { label: 'Absent', value: stats?.absent ?? records.filter(r => r.status === 'Absent').length, color: 'text-red-400' },
                 { label: 'Late', value: stats?.late ?? records.filter(r => r.status === 'Late').length, color: 'text-yellow-400' }
               ].map(({ label, value, color }) => (
-                <div key={label} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+                <div key={label} className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
                   <p className={`text-2xl font-bold ${color}`}>{value}</p>
                   <p className="text-white/40 text-xs mt-1">{label}</p>
                 </div>
@@ -64,11 +64,11 @@ export default function StudentAttendance() {
 
           <h2 className="text-base font-semibold mb-3">Recent Records</h2>
           {records.length === 0 ? (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No attendance records found.</div>
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-8 text-center text-white/30 text-sm">No attendance records found.</div>
           ) : (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-hidden">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-hidden">
               {records.slice(0, 20).map((r, i) => (
-                <div key={r._id || i} className={`flex items-center justify-between px-4 md:px-5 py-3 ${i < Math.min(records.length, 20) - 1 ? 'border-b border-white/5' : ''} hover:bg-white/2 transition-colors`}>
+                <div key={r._id || i} className={`flex items-center justify-between px-4 md:px-5 py-3 ${i < Math.min(records.length, 20) - 1 ? 'border-b border-white/[0.03]' : ''} hover:bg-white/2 transition-colors`}>
                   <div>
                     <p className="text-sm text-white">{r.date ? fmt(r.date) : '—'}</p>
                     {r.subject && <p className="text-xs text-white/40">{r.subject}</p>}

@@ -8,7 +8,7 @@ module.exports = {
         "dark-2":  "#141416",
         "dark-3":  "#1C1C1E",
         surface:   "#F5F5F7",
-        border:    "#D2D2D7",
+        border:    "#E5E5EA",
         text:      "#1D1D1F",
         muted:     "#6E6E73",
         accent:    "#0066CC",

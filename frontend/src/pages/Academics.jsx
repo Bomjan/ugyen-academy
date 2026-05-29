@@ -125,7 +125,7 @@ export default function Academics() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {facilities.map((f, i) => (
               <R key={f} d={`d${(i % 4) + 1}`}>
-                <div className="group bg-white/5 border border-white/8 rounded-2xl px-5 py-4 hover:bg-white/8 hover:border-white/15 transition-all duration-200 cursor-default">
+                <div className="group bg-white/5 border border-white/[0.05] rounded-2xl px-5 py-4 hover:bg-white/8 hover:border-white/[0.08] transition-all duration-200 cursor-default">
                   <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                     <span className="text-white/60 group-hover:text-white text-[14px] transition-colors">{f}</span>

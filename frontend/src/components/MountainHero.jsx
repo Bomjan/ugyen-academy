@@ -101,7 +101,7 @@ export default function MountainHero() {
             Apply for 2026 <ArrowRight className="w-4 h-4" />
           </Link>
           <Link to="/academics"
-            className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-medium text-[14px] px-6 py-3 rounded-lg transition-all duration-150">
+            className="bg-white/10 backdrop-blur-sm border border-white/[0.1] hover:bg-white/20 text-white font-medium text-[14px] px-6 py-3 rounded-lg transition-all duration-150">
             Explore Programs
           </Link>
         </div>
@@ -110,9 +110,9 @@ export default function MountainHero() {
       {/* Bottom stats bar floating over mountains */}
       <div className="relative z-10 opacity-0" style={{animation:"up .5s .85s ease-out forwards"}}>
         <div className="wrap pb-10">
-          <div className="grid grid-cols-4 bg-white/8 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-4 bg-white/8 backdrop-blur-md border border-white/[0.06] rounded-2xl overflow-hidden">
             {[["24+","Years"],["1,000+","Students"],["98%","Pass Rate"],["3×","Champions"]].map(([v,l],i) => (
-              <div key={l} className={`py-4 text-center ${i>0?"border-l border-white/10":""}`}>
+              <div key={l} className={`py-4 text-center ${i>0?"border-l border-white/[0.06]":""}`}>
                 <p className="font-black text-white text-xl tracking-tight">{v}</p>
                 <p className="label text-white/35 mt-0.5">{l}</p>
               </div>

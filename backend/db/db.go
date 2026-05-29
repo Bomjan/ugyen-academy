@@ -3,6 +3,7 @@ package db
 import (
 	"log"
 	"os"
+	"strings"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -15,6 +16,13 @@ func Connect() {
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
 		log.Fatal("DATABASE_URL environment variable is not set")
+	}
+
+	// Render provides a postgres:// URL — ensure SSL is enabled for remote connections
+	if strings.HasPrefix(dsn, "postgres://") || strings.HasPrefix(dsn, "postgresql://") {
+		if !strings.Contains(dsn, "sslmode") {
+			dsn += "?sslmode=require"
+		}
 	}
 
 	var err error

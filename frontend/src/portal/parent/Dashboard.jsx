@@ -51,7 +51,7 @@ export default function ParentDashboard() {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
-        <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+        <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 bg-green-500/15 rounded-lg flex items-center justify-center">
               <TrendingUp size={16} className="text-green-400" />
@@ -61,7 +61,7 @@ export default function ParentDashboard() {
           <p className="text-2xl font-bold text-green-400">{loading ? '—' : `${avg}%`}</p>
           {!loading && progress.length > 0 && <p className="text-xs text-white/30 mt-0.5">Grade: {getGrade(avg)}</p>}
         </div>
-        <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+        <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 bg-blue-500/15 rounded-lg flex items-center justify-center">
               <Calendar size={16} className="text-blue-400" />
@@ -70,7 +70,7 @@ export default function ParentDashboard() {
           </div>
           <p className={`text-2xl font-bold ${attendPct >= 75 ? 'text-blue-400' : 'text-yellow-400'}`}>{loading ? '—' : `${attendPct}%`}</p>
         </div>
-        <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+        <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <div className={`w-8 h-8 ${pendingFees > 0 ? 'bg-red-500/15' : 'bg-green-500/15'} rounded-lg flex items-center justify-center`}>
               <CreditCard size={16} className={pendingFees > 0 ? 'text-red-400' : 'text-green-400'} />
@@ -88,11 +88,11 @@ export default function ParentDashboard() {
             <Link to="/portal/parent/announcements" className="text-accent text-xs hover:text-accent-h">View all</Link>
           </div>
           {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentAnnouncements.length === 0 ? (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No announcements.</div>
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-6 text-center text-white/30 text-sm">No announcements.</div>
           ) : (
             <div className="space-y-2">
               {recentAnnouncements.map((a, i) => (
-                <div key={a._id || i} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+                <div key={a._id || i} className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
                   <div className="flex items-center gap-2 mb-1">
                     {a.pinned && <Pin size={11} className="text-accent" />}
                     <span className="text-sm font-medium">{a.title}</span>
@@ -114,7 +114,7 @@ export default function ParentDashboard() {
               { to: '/portal/parent/fees', label: 'Fees', desc: 'Fee status' },
               { to: '/portal/parent/announcements', label: 'Announcements', desc: 'School news' }
             ].map(l => (
-              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/8 rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
+              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/[0.05] rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
                 <div>
                   <p className="text-sm font-medium text-white">{l.label}</p>
                   <p className="text-xs text-white/40">{l.desc}</p>

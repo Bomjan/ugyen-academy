@@ -38,7 +38,7 @@ func hashPassword(pwd string) string {
 
 func main() {
 	// Load .env from ../../.env (seed runs from backend/)
-	if err := godotenv.Load("../../.env"); err != nil {
+	if err := godotenv.Load("../.env"); err != nil {
 		log.Println("No .env file found, using environment variables")
 	}
 

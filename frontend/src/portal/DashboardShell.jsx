@@ -60,7 +60,7 @@ function SidebarContent({ user, nav, location, onNav, onLogout }) {
           </span>
         </Link>
       </div>
-      <div className="mx-3 mb-2 bg-white/[0.04] border border-white/[0.06] rounded-xl px-3.5 py-3 shrink-0">
+      <div className="mx-3 mb-2 bg-white/[0.04] border border-white/[0.05] rounded-xl px-3.5 py-3 shrink-0">
         <div className="flex items-center gap-2.5 min-w-0">
           <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center shrink-0">
             <span className="text-accent text-[12px] font-bold">{user?.name?.[0]?.toUpperCase()}</span>
@@ -116,7 +116,7 @@ export default function DashboardShell({ children }) {
   return (
     <div className="min-h-screen bg-dark flex">
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex flex-col w-[220px] shrink-0 bg-dark-2 border-r border-white/[0.06]">
+      <aside className="hidden md:flex flex-col w-[220px] shrink-0 bg-dark-2 border-r border-white/[0.05]">
         <SidebarContent user={user} nav={nav} location={location} onNav={() => {}} onLogout={handleLogout} />
       </aside>
 
@@ -183,7 +183,7 @@ export default function DashboardShell({ children }) {
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile topbar — minimal: just the school name + avatar */}
-        <div className="md:hidden flex items-center justify-between px-5 py-3.5 bg-dark-2 border-b border-white/[0.06]">
+        <div className="md:hidden flex items-center justify-between px-5 py-3.5 bg-dark-2 border-b border-white/[0.05]">
           <span className="font-wordmark font-bold text-[15px] text-white tracking-tight">Ugyen Academy</span>
           <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center">
             <span className="text-accent text-[11px] font-bold">{user?.name?.[0]?.toUpperCase()}</span>

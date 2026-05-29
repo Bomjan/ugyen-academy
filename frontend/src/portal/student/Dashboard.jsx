@@ -51,7 +51,7 @@ export default function StudentDashboard() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
         {stats.map(({ icon: Icon, label, value, color, bg }) => (
-          <div key={label} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+          <div key={label} className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className={`w-8 h-8 ${bg} rounded-lg flex items-center justify-center`}>
                 <Icon size={16} className={color} />
@@ -71,11 +71,11 @@ export default function StudentDashboard() {
               <Link to="/portal/student/progress" className="text-accent text-xs hover:text-accent-h">View all</Link>
             </div>
             {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentProgress.length === 0 ? (
-              <div className="bg-dark-2 border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No progress records yet.</div>
+              <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-6 text-center text-white/30 text-sm">No progress records yet.</div>
             ) : (
-              <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-hidden">
+              <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-hidden">
                 {recentProgress.map((r, i) => (
-                  <div key={r._id || i} className={`flex items-center justify-between px-4 md:px-5 py-3 ${i < recentProgress.length - 1 ? 'border-b border-white/5' : ''}`}>
+                  <div key={r._id || i} className={`flex items-center justify-between px-4 md:px-5 py-3 ${i < recentProgress.length - 1 ? 'border-b border-white/[0.03]' : ''}`}>
                     <div>
                       <p className="text-sm text-white font-medium">{r.subject}</p>
                       <p className="text-xs text-white/40">{r.term} · {r.assessmentType}</p>
@@ -96,11 +96,11 @@ export default function StudentDashboard() {
               <Link to="/portal/student/announcements" className="text-accent text-xs hover:text-accent-h">View all</Link>
             </div>
             {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentAnnouncements.length === 0 ? (
-              <div className="bg-dark-2 border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No announcements.</div>
+              <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-6 text-center text-white/30 text-sm">No announcements.</div>
             ) : (
               <div className="space-y-2">
                 {recentAnnouncements.map((a, i) => (
-                  <div key={a._id || i} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+                  <div key={a._id || i} className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-1">
                       {a.pinned && <Pin size={11} className="text-accent" />}
                       <span className="text-sm font-medium">{a.title}</span>
@@ -122,7 +122,7 @@ export default function StudentDashboard() {
               { to: '/portal/student/fees', label: 'Fees', desc: 'Fee status' },
               { to: '/portal/student/announcements', label: 'Announcements', desc: 'School news' }
             ].map(l => (
-              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/8 rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
+              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/[0.05] rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
                 <div>
                   <p className="text-sm font-medium text-white">{l.label}</p>
                   <p className="text-xs text-white/40">{l.desc}</p>

@@ -36,7 +36,7 @@ export default function StatsBar() {
       <div className="section">
         <div className="grid grid-cols-2 md:grid-cols-4">
           {stats.map((s, i) => (
-            <div key={s.label} className={`px-8 py-4 ${i > 0 ? "border-l border-white/10" : ""}`}>
+            <div key={s.label} className={`px-8 py-4 ${i > 0 ? "border-l border-white/[0.06]" : ""}`}>
               <div className="font-serif text-5xl md:text-6xl font-bold text-white mb-2 leading-none">
                 <CountUp target={s.value} suffix={s.suffix} />
               </div>

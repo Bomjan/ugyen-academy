@@ -47,7 +47,7 @@ export default function Sports() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[["2013", "National Champions"], ["2014", "AFC President's Cup"], ["6+", "Sports Disciplines"], ["#1", "School Games Medal Count"]].map(([v, l], i) => (
               <R key={l} d={`d${i + 1}`}>
-                <div className="bg-white/5 border border-white/8 rounded-2xl p-5 text-center">
+                <div className="bg-white/5 border border-white/[0.05] rounded-2xl p-5 text-center">
                   <p className="font-black text-3xl text-white tracking-tight">{v}</p>
                   <p className="label text-white/30 mt-1">{l}</p>
                 </div>
@@ -89,7 +89,7 @@ export default function Sports() {
           <div className="space-y-1">
             {ach.map((a, i) => (
               <R key={i} d={`d${(i % 4) + 1}`}>
-                <div className="group flex items-center gap-5 px-5 py-4 rounded-2xl border border-white/5 hover:bg-white/5 hover:border-white/10 transition-all duration-150 cursor-default">
+                <div className="group flex items-center gap-5 px-5 py-4 rounded-2xl border border-white/[0.03] hover:bg-white/5 hover:border-white/[0.06] transition-all duration-150 cursor-default">
                   <span className="font-black text-xl text-accent w-12 shrink-0">{a.y}</span>
                   <div className="flex-1">
                     <p className="font-semibold text-[14px] text-white group-hover:text-accent transition-colors duration-150">{a.t}</p>

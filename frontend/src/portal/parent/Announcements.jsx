@@ -30,11 +30,11 @@ export default function ParentAnnouncements() {
         {loading ? (
           <p className="text-white/30 text-sm">Loading...</p>
         ) : sorted.length === 0 ? (
-          <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No announcements at this time.</div>
+          <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-8 text-center text-white/30 text-sm">No announcements at this time.</div>
         ) : (
           <div className="space-y-3">
             {sorted.map((a, i) => (
-              <div key={a._id || i} className={`bg-dark-2 border rounded-2xl p-5 ${a.pinned ? 'border-accent/30' : 'border-white/8'}`}>
+              <div key={a._id || i} className={`bg-dark-2 border rounded-2xl p-5 ${a.pinned ? 'border-accent/30' : 'border-white/[0.05]'}`}>
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2 min-w-0">
                     {a.pinned && <Pin size={13} className="text-accent flex-shrink-0 mt-0.5" />}

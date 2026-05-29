@@ -38,7 +38,7 @@ func GetStudents(c *gin.Context) {
 			AcademicYear: s.AcademicYear,
 		})
 	}
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, gin.H{"data": result})
 }
 
 type TeacherListItem struct {
@@ -64,5 +64,5 @@ func GetTeachers(c *gin.Context) {
 			Role:  u.Role,
 		})
 	}
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, gin.H{"data": result})
 }

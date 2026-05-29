@@ -42,7 +42,7 @@ export default function Home() {
     <div>
       <section className="relative min-h-screen bg-dark flex flex-col items-center justify-center text-center px-6 pt-14">
         <div className="max-w-4xl mx-auto">
-          <span className="inline-flex items-center gap-2 border border-white/10 rounded-full px-3.5 py-1.5 text-[12px] text-white/50 mb-8">
+          <span className="inline-flex items-center gap-2 border border-white/[0.06] rounded-full px-3.5 py-1.5 text-[12px] text-white/50 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
             Bhutan's Premier School · Est. 2002
           </span>
@@ -67,17 +67,17 @@ export default function Home() {
             </Link>
             <Link
               to="/academics"
-              className="bg-white/8 border border-white/10 hover:bg-white/12 text-white text-[14px] font-medium px-6 py-3 rounded-lg transition-colors"
+              className="bg-white/8 border border-white/[0.06] hover:bg-white/12 text-white text-[14px] font-medium px-6 py-3 rounded-lg transition-colors"
             >
               Explore Programs
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mt-16 max-w-xl mx-auto border border-white/8 rounded-2xl overflow-hidden bg-white/4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mt-16 max-w-xl mx-auto border border-white/[0.05] rounded-2xl overflow-hidden bg-white/4">
             {stats.map(({ n, l }, i) => (
               <div
                 key={l}
-                className={`py-5 px-4 flex flex-col items-center ${i % 2 === 0 ? "border-r border-white/8" : ""} ${i < 2 ? "border-b border-white/8 md:border-b-0" : ""} ${i < stats.length - 1 ? "md:border-r md:border-b-0" : "md:border-r-0"}`}
+                className={`py-5 px-4 flex flex-col items-center ${i % 2 === 0 ? "border-r border-white/[0.05]" : ""} ${i < 2 ? "border-b border-white/[0.05] md:border-b-0" : ""} ${i < stats.length - 1 ? "md:border-r md:border-b-0" : "md:border-r-0"}`}
               >
                 <span className="font-bold text-white text-2xl leading-none">{n}</span>
                 <span className="text-white/35 text-[11px] mt-1.5 text-center">{l}</span>
@@ -136,7 +136,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-4">
             {programs.map((p, i) => (
               <R key={p.name} d={`d${(i % 4) + 1}`}>
-                <div className="group bg-dark-2 border border-white/8 rounded-2xl p-8 hover:border-accent/40 transition-all duration-200 cursor-default">
+                <div className="group bg-dark-2 border border-white/[0.05] rounded-2xl p-8 hover:border-accent/40 transition-all duration-200 cursor-default">
                   <span className="label text-white/20 mb-4 block">{p.n}</span>
                   <h3 className="font-black text-3xl text-white tracking-tight mb-2">{p.name}</h3>
                   <p className="text-white/35 text-sm mb-3">{p.sub}</p>
@@ -234,7 +234,7 @@ export default function Home() {
               </Link>
               <Link
                 to="/academics"
-                className="bg-white/8 border border-white/10 hover:bg-white/12 text-white text-[14px] font-medium px-6 py-3 rounded-lg transition-colors"
+                className="bg-white/8 border border-white/[0.06] hover:bg-white/12 text-white text-[14px] font-medium px-6 py-3 rounded-lg transition-colors"
               >
                 Explore Programs
               </Link>

@@ -132,7 +132,7 @@ export default function Admissions() {
               </a>
               <a
                 href="mailto:ugyenacademyadmin@education.gov.bt"
-                className="border border-white/15 text-white/70 hover:border-white/30 hover:text-white text-[14px] font-medium px-6 py-3 rounded-lg transition-all inline-flex items-center gap-2"
+                className="border border-white/[0.08] text-white/70 hover:border-white/30 hover:text-white text-[14px] font-medium px-6 py-3 rounded-lg transition-all inline-flex items-center gap-2"
               >
                 Email Us
               </a>

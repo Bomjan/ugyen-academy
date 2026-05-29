@@ -19,7 +19,11 @@ export default function Login() {
       const user = await login(form.email, form.password);
       navigate(`/portal/${user.role}`);
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid credentials");
+      if (!err.response) {
+        setError("Cannot reach server — make sure the app is running.");
+      } else {
+        setError(err.response?.data?.message || err.response?.data?.error || "Invalid email or password.");
+      }
     } finally {
       setLoading(false);
     }
@@ -55,7 +59,7 @@ export default function Login() {
           </p>
           <div className="flex flex-wrap gap-2 pt-2">
             {["Students", "Parents", "Teachers", "Admin"].map(r => (
-              <span key={r} className="text-[11px] text-white/40 border border-white/10 rounded-full px-3 py-1">{r}</span>
+              <span key={r} className="text-[11px] text-white/40 border border-white/[0.05] rounded-full px-3 py-1">{r}</span>
             ))}
           </div>
         </div>
@@ -95,7 +99,7 @@ export default function Login() {
                 value={form.email}
                 onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                 placeholder="you@school.edu.bt"
-                className="w-full bg-dark-2 border border-white/10 rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-dark-3 transition-all"
+                className="w-full bg-dark-2 border border-white/[0.05] rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-dark-3 transition-all"
               />
             </div>
 
@@ -107,7 +111,7 @@ export default function Login() {
                   value={form.password}
                   onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
                   placeholder="••••••••"
-                  className="w-full bg-dark-2 border border-white/10 rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-dark-3 transition-all pr-11"
+                  className="w-full bg-dark-2 border border-white/[0.05] rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-dark-3 transition-all pr-11"
                 />
                 <button type="button" onClick={() => setShow(!show)}
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors p-0.5">

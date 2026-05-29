@@ -24,7 +24,7 @@ function IssueModal({ onClose, onSaved }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-      <div className="bg-dark-2 border border-white/10 rounded-2xl w-full max-w-md p-6">
+      <div className="bg-dark-2 border border-white/[0.05] rounded-2xl w-full max-w-md p-6">
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-bold text-white text-[16px]">Issue Book</h2>
           <button onClick={onClose} className="text-white/30 hover:text-white"><X size={18}/></button>
@@ -33,7 +33,7 @@ function IssueModal({ onClose, onSaved }) {
           <div>
             <label className="block text-[11px] font-medium text-white/40 mb-1">Select Book</label>
             <select value={form.bookId} onChange={e=>setForm(f=>({...f,bookId:e.target.value}))} required
-              className="w-full bg-dark border border-white/8 rounded-lg px-3 py-2.5 text-[13px] text-white focus:outline-none focus:border-accent">
+              className="w-full bg-dark border border-white/[0.05] rounded-lg px-3 py-2.5 text-[13px] text-white focus:outline-none focus:border-accent">
               <option value="">Choose available book…</option>
               {books.map(b=><option key={b._id} value={b._id}>{b.title} — {b.author} ({b.availableCopies} avail.)</option>)}
             </select>
@@ -41,7 +41,7 @@ function IssueModal({ onClose, onSaved }) {
           <div>
             <label className="block text-[11px] font-medium text-white/40 mb-1">Select Student</label>
             <select value={form.studentId} onChange={e=>setForm(f=>({...f,studentId:e.target.value}))} required
-              className="w-full bg-dark border border-white/8 rounded-lg px-3 py-2.5 text-[13px] text-white focus:outline-none focus:border-accent">
+              className="w-full bg-dark border border-white/[0.05] rounded-lg px-3 py-2.5 text-[13px] text-white focus:outline-none focus:border-accent">
               <option value="">Choose student…</option>
               {students.map(s=><option key={s._id} value={s._id}>{s.user?.name} — {s.class} {s.stream}</option>)}
             </select>
@@ -49,13 +49,13 @@ function IssueModal({ onClose, onSaved }) {
           <div>
             <label className="block text-[11px] font-medium text-white/40 mb-1">Due Date</label>
             <input type="date" value={form.dueDate} onChange={e=>setForm(f=>({...f,dueDate:e.target.value}))} required
-              className="w-full bg-dark border border-white/8 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-accent"/>
+              className="w-full bg-dark border border-white/[0.05] rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-accent"/>
           </div>
           <div className="flex gap-3 pt-1">
             <button type="submit" disabled={saving} className="bg-accent hover:bg-accent-h text-white text-[13px] font-medium px-5 py-2.5 rounded-lg flex items-center gap-2 disabled:opacity-50 transition-colors">
               <Check size={14}/>{saving?"Issuing…":"Issue Book"}
             </button>
-            <button type="button" onClick={onClose} className="border border-white/10 text-white/50 hover:text-white text-[13px] px-5 py-2.5 rounded-lg">Cancel</button>
+            <button type="button" onClick={onClose} className="border border-white/[0.05] text-white/50 hover:text-white text-[13px] px-5 py-2.5 rounded-lg">Cancel</button>
           </div>
         </form>
       </div>
@@ -110,13 +110,13 @@ export default function LibraryIssues() {
       <div className="flex gap-2">
         {["all","issued","overdue","returned"].map(s=>(
           <button key={s} onClick={()=>setFilter(s)}
-            className={`px-3 py-1.5 rounded-lg text-[12px] font-medium capitalize transition-colors ${filter===s?"bg-accent text-white":"bg-dark-2 border border-white/8 text-white/40 hover:text-white"}`}>
+            className={`px-3 py-1.5 rounded-lg text-[12px] font-medium capitalize transition-colors ${filter===s?"bg-accent text-white":"bg-dark-2 border border-white/[0.05] text-white/40 hover:text-white"}`}>
             {s}
           </button>
         ))}
       </div>
 
-      <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-hidden">
+      <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-hidden">
         {loading ? (
           <p className="text-white/25 text-center py-10 text-[13px]">Loading…</p>
         ) : issues.length === 0 ? (
@@ -124,14 +124,14 @@ export default function LibraryIssues() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-[13px]">
-              <thead><tr className="border-b border-white/5">
+              <thead><tr className="border-b border-white/[0.03]">
                 {["Student","Book","Issued","Due","Status","Fine",""].map(h=>(
                   <th key={h} className="text-left px-5 py-3 text-white/30 font-medium">{h}</th>
                 ))}
               </tr></thead>
               <tbody>
                 {issues.map(issue=>(
-                  <tr key={issue._id} className="border-b border-white/5 hover:bg-white/[0.02]">
+                  <tr key={issue._id} className="border-b border-white/[0.03] hover:bg-white/[0.02]">
                     <td className="px-5 py-3 text-white font-medium">{issue.student?.user?.name||"—"}</td>
                     <td className="px-5 py-3">
                       <p className="text-white">{issue.book?.title}</p>

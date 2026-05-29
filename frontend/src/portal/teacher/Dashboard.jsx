@@ -30,7 +30,7 @@ export default function TeacherDashboard() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
-        <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+        <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-9 h-9 bg-accent/15 rounded-xl flex items-center justify-center">
               <Users size={18} className="text-accent" />
@@ -39,7 +39,7 @@ export default function TeacherDashboard() {
           </div>
           <p className="text-2xl md:text-3xl font-bold text-white">{loading ? '—' : students.length}</p>
         </div>
-        <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+        <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-9 h-9 bg-purple-500/15 rounded-xl flex items-center justify-center">
               <Calendar size={18} className="text-purple-400" />
@@ -48,7 +48,7 @@ export default function TeacherDashboard() {
           </div>
           <p className="text-base md:text-lg font-bold text-white">{new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}</p>
         </div>
-        <div className="col-span-2 md:col-span-1 bg-dark-2 border border-white/8 rounded-xl p-4">
+        <div className="col-span-2 md:col-span-1 bg-dark-2 border border-white/[0.05] rounded-xl p-4">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-9 h-9 bg-green-500/15 rounded-xl flex items-center justify-center">
               <School size={18} className="text-green-400" />
@@ -65,11 +65,11 @@ export default function TeacherDashboard() {
           {loading ? (
             <p className="text-white/30 text-sm">Loading...</p>
           ) : recent.length === 0 ? (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No announcements yet.</div>
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-6 text-center text-white/30 text-sm">No announcements yet.</div>
           ) : (
             <div className="space-y-3">
               {recent.map((a, i) => (
-                <div key={a._id || i} className="bg-dark-2 border border-white/8 rounded-2xl p-4">
+                <div key={a._id || i} className="bg-dark-2 border border-white/[0.05] rounded-2xl p-4">
                   <div className="flex items-center gap-2 mb-1">
                     {a.pinned && <Pin size={12} className="text-accent" />}
                     <span className="text-sm font-medium text-white">{a.title}</span>
@@ -90,7 +90,7 @@ export default function TeacherDashboard() {
               { to: '/portal/teacher/attendance', label: 'Attendance', desc: 'Mark daily attendance' },
               { to: '/portal/teacher/announcements', label: 'Announcements', desc: 'Post to school' }
             ].map(l => (
-              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/8 rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
+              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/[0.05] rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
                 <div>
                   <p className="text-sm font-medium text-white">{l.label}</p>
                   <p className="text-xs text-white/40">{l.desc}</p>

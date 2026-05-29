@@ -72,13 +72,13 @@ export default function TeacherProgress() {
       <h1 className="text-2xl font-bold mb-1">Progress Management</h1>
       <p className="text-white/40 text-sm mb-6">Record and review student academic progress</p>
 
-      <div className="bg-dark-2 border border-white/8 rounded-2xl p-5 mb-5">
+      <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-5 mb-5">
         <label className="block text-sm text-white/60 mb-2">Select Student</label>
         {loading ? (
           <p className="text-white/30 text-sm">Loading students...</p>
         ) : (
           <select
-            className="w-full bg-dark-3 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent"
+            className="w-full bg-dark-3 border border-white/[0.05] rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent"
             value={selectedStudent}
             onChange={e => { setSelectedStudent(e.target.value); setShowForm(false); }}
           >
@@ -103,37 +103,37 @@ export default function TeacherProgress() {
           </div>
 
           {showForm && (
-            <form onSubmit={handleSave} className="bg-dark-2 border border-white/8 rounded-2xl p-5 mb-5 space-y-4">
+            <form onSubmit={handleSave} className="bg-dark-2 border border-white/[0.05] rounded-2xl p-5 mb-5 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs text-white/50 mb-1">Subject</label>
-                  <select className="w-full bg-dark-3 border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.subject} onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}>
+                  <select className="w-full bg-dark-3 border border-white/[0.05] rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.subject} onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}>
                     {SUBJECTS.map(s => <option key={s}>{s}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-xs text-white/50 mb-1">Marks (0–100)</label>
                   <div className="flex items-center gap-2">
-                    <input type="number" min="0" max="100" required className="w-full bg-dark-3 border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.marks} onChange={e => setForm(f => ({ ...f, marks: e.target.value }))} />
+                    <input type="number" min="0" max="100" required className="w-full bg-dark-3 border border-white/[0.05] rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.marks} onChange={e => setForm(f => ({ ...f, marks: e.target.value }))} />
                     {grade && <span className={`text-sm font-bold min-w-[28px] ${gradeColor(grade)}`}>{grade}</span>}
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs text-white/50 mb-1">Term</label>
-                  <select className="w-full bg-dark-3 border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.term} onChange={e => setForm(f => ({ ...f, term: e.target.value }))}>
+                  <select className="w-full bg-dark-3 border border-white/[0.05] rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.term} onChange={e => setForm(f => ({ ...f, term: e.target.value }))}>
                     {TERMS.map(t => <option key={t}>{t}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-xs text-white/50 mb-1">Assessment Type</label>
-                  <select className="w-full bg-dark-3 border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.assessmentType} onChange={e => setForm(f => ({ ...f, assessmentType: e.target.value }))}>
+                  <select className="w-full bg-dark-3 border border-white/[0.05] rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent" value={form.assessmentType} onChange={e => setForm(f => ({ ...f, assessmentType: e.target.value }))}>
                     {ASSESSMENT_TYPES.map(a => <option key={a}>{a}</option>)}
                   </select>
                 </div>
               </div>
               <div>
                 <label className="block text-xs text-white/50 mb-1">Remarks (optional)</label>
-                <textarea className="w-full bg-dark-3 border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent resize-none" rows={2} value={form.remarks} onChange={e => setForm(f => ({ ...f, remarks: e.target.value }))} />
+                <textarea className="w-full bg-dark-3 border border-white/[0.05] rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accent resize-none" rows={2} value={form.remarks} onChange={e => setForm(f => ({ ...f, remarks: e.target.value }))} />
               </div>
               <button type="submit" disabled={saving} className="bg-accent hover:bg-accent-h disabled:opacity-50 text-white text-sm px-5 py-2 rounded-xl transition-colors">
                 {saving ? 'Saving...' : 'Save Record'}
@@ -144,12 +144,12 @@ export default function TeacherProgress() {
           {recLoading ? (
             <p className="text-white/30 text-sm">Loading records...</p>
           ) : records.length === 0 ? (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No progress records found for this student.</div>
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-8 text-center text-white/30 text-sm">No progress records found for this student.</div>
           ) : (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-x-auto">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-x-auto">
               <table className="w-full text-sm min-w-[560px]">
                 <thead>
-                  <tr className="border-b border-white/8 text-white/40">
+                  <tr className="border-b border-white/[0.05] text-white/40">
                     <th className="text-left px-5 py-3">Subject</th>
                     <th className="text-left px-5 py-3">Term</th>
                     <th className="text-left px-5 py-3">Type</th>
@@ -163,7 +163,7 @@ export default function TeacherProgress() {
                   {records.map((r, i) => {
                     const g = getGrade(r.marks);
                     return (
-                      <tr key={r._id || i} className="border-b border-white/5 hover:bg-white/2 transition-colors">
+                      <tr key={r._id || i} className="border-b border-white/[0.03] hover:bg-white/2 transition-colors">
                         <td className="px-5 py-3 text-white">{r.subject}</td>
                         <td className="px-5 py-3 text-white/70">{r.term}</td>
                         <td className="px-5 py-3 text-white/70">{r.assessmentType}</td>

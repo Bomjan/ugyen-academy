@@ -133,7 +133,7 @@ export default function Navbar() {
               Apply for 2026
             </Link>
             <Link to="/portal/login" onClick={() => setOpen(false)}
-              className="menu-item block w-full border border-white/10 text-white/40 hover:text-white hover:border-white/20 text-[14px] font-medium text-center px-6 py-3.5 rounded-2xl transition-all"
+              className="menu-item block w-full border border-white/[0.06] text-white/40 hover:text-white hover:border-white/[0.1] text-[14px] font-medium text-center px-6 py-3.5 rounded-2xl transition-all"
               style={{ animationDelay: `${80 + links.length * 45 + 40}ms` }}>
               Student Portal
             </Link>

@@ -38,15 +38,15 @@ export default function StudentFees() {
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-6">
-            <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
               <p className="text-xs text-white/40 mb-2">Total Owed</p>
               <p className="text-2xl font-bold text-red-400">Nu. {totalOwed.toLocaleString()}</p>
             </div>
-            <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
               <p className="text-xs text-white/40 mb-2">Total Paid</p>
               <p className="text-2xl font-bold text-green-400">Nu. {totalPaid.toLocaleString()}</p>
             </div>
-            <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
               <p className="text-xs text-white/40 mb-2">Overdue</p>
               <p className={`text-2xl font-bold ${overdue > 0 ? 'text-red-400' : 'text-white/40'}`}>Nu. {overdue.toLocaleString()}</p>
             </div>
@@ -54,12 +54,12 @@ export default function StudentFees() {
 
           <h2 className="text-base font-semibold mb-3">Fee Records</h2>
           {fees.length === 0 ? (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No fee records found.</div>
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-8 text-center text-white/30 text-sm">No fee records found.</div>
           ) : (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-x-auto">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-x-auto">
               <table className="w-full text-sm min-w-[520px]">
                 <thead>
-                  <tr className="border-b border-white/8">
+                  <tr className="border-b border-white/[0.05]">
                     <th className="text-left px-5 py-3 text-white/40 font-normal">Description</th>
                     <th className="text-left px-5 py-3 text-white/40 font-normal">Amount</th>
                     <th className="text-left px-5 py-3 text-white/40 font-normal">Due Date</th>
@@ -69,7 +69,7 @@ export default function StudentFees() {
                 </thead>
                 <tbody>
                   {fees.map((f, i) => (
-                    <tr key={f._id || i} className="border-b border-white/5 hover:bg-white/2">
+                    <tr key={f._id || i} className="border-b border-white/[0.03] hover:bg-white/2">
                       <td className="px-5 py-3 text-white">{f.description || f.feeType || 'Fee'}</td>
                       <td className="px-5 py-3 text-white font-medium">Nu. {(f.amount || 0).toLocaleString()}</td>
                       <td className="px-5 py-3 text-white/50">{f.dueDate ? fmt(f.dueDate) : '—'}</td>

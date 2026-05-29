@@ -61,7 +61,7 @@ export default function StudentProgress() {
 
       <div className="flex flex-wrap gap-2 mb-6">
         {TERMS.map(t => (
-          <button key={t} onClick={() => setTerm(t)} className={`px-4 py-1.5 rounded-xl text-sm font-medium transition-all ${term === t ? 'bg-accent text-white' : 'bg-dark-2 text-white/50 border border-white/8 hover:border-white/20'}`}>
+          <button key={t} onClick={() => setTerm(t)} className={`px-4 py-1.5 rounded-xl text-sm font-medium transition-all ${term === t ? 'bg-accent text-white' : 'bg-dark-2 text-white/50 border border-white/[0.05] hover:border-white/20'}`}>
             {t}
           </button>
         ))}
@@ -72,7 +72,7 @@ export default function StudentProgress() {
       ) : (
         <>
           {filtered.length > 0 && (
-            <div className="bg-dark-2 border border-white/8 rounded-2xl p-5 mb-6">
+            <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-5 mb-6">
               <p className="text-white/50 text-xs mb-1">Overall Average</p>
               <p className={`text-5xl font-bold ${gradeColor(getGrade(overall))}`}>{overall}<span className="text-2xl">%</span></p>
               <p className="text-white/30 text-xs mt-1">{filtered.length} records · {Object.keys(bySubject).length} subjects</p>
@@ -87,7 +87,7 @@ export default function StudentProgress() {
                   const g = getGrade(avg);
                   const barWidth = Math.max(4, avg);
                   return (
-                    <div key={subject} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+                    <div key={subject} className="bg-dark-2 border border-white/[0.05] rounded-xl p-4">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-white">{subject}</span>
                         <div className="flex items-center gap-2">
@@ -111,12 +111,12 @@ export default function StudentProgress() {
           <div>
             <h2 className="text-base font-semibold mb-3">All Records</h2>
             {filtered.length === 0 ? (
-              <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No records for {term === 'All' ? 'any term' : term}.</div>
+              <div className="bg-dark-2 border border-white/[0.05] rounded-2xl p-8 text-center text-white/30 text-sm">No records for {term === 'All' ? 'any term' : term}.</div>
             ) : (
-              <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-x-auto">
+              <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-x-auto">
                 <table className="w-full text-sm min-w-[480px]">
                   <thead>
-                    <tr className="border-b border-white/8">
+                    <tr className="border-b border-white/[0.05]">
                       <th className="text-left px-5 py-3 text-white/40 font-normal">Subject</th>
                       <th className="text-left px-5 py-3 text-white/40 font-normal">Term</th>
                       <th className="text-left px-5 py-3 text-white/40 font-normal">Type</th>
@@ -129,7 +129,7 @@ export default function StudentProgress() {
                     {filtered.map((r, i) => {
                       const g = getGrade(r.marks);
                       return (
-                        <tr key={r._id || i} className="border-b border-white/5 hover:bg-white/2">
+                        <tr key={r._id || i} className="border-b border-white/[0.03] hover:bg-white/2">
                           <td className="px-5 py-3 text-white">{r.subject}</td>
                           <td className="px-5 py-3 text-white/60">{r.term}</td>
                           <td className="px-5 py-3 text-white/60">{r.assessmentType}</td>

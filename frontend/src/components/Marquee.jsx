@@ -3,7 +3,7 @@ const items = ["Bhutan's #1 Private School", "98% Pass Rate", "3× National Cham
 export default function Marquee() {
   const rep = [...items, ...items, ...items];
   return (
-    <div className="bg-dark-3 overflow-hidden py-3 select-none border-b border-white/5">
+    <div className="bg-dark-3 overflow-hidden py-3 select-none border-b border-white/[0.03]">
       <div
         className="flex gap-10 whitespace-nowrap"
         style={{ animation: "marquee 28s linear infinite", width: "max-content" }}

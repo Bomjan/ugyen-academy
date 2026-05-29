@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-dark border-t border-white/8">
+    <footer className="bg-dark border-t border-white/[0.05]">
       <div className="wrap py-14">
-        <div className="grid md:grid-cols-4 gap-10 pb-10 border-b border-white/8">
+        <div className="grid md:grid-cols-4 gap-10 pb-10 border-b border-white/[0.05]">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
               <span className="flex items-center justify-center w-7 h-7 rounded-md bg-white text-dark text-[11px] font-black select-none">UA</span>

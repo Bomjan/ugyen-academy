@@ -12,8 +12,19 @@ import (
 
 func GetBooks(c *gin.Context) {
 	var books []models.Book
-	db.DB.Order("created_at desc").Find(&books)
-	c.JSON(http.StatusOK, books)
+	q := db.DB.Order("created_at desc")
+	if search := c.Query("search"); search != "" {
+		like := "%" + search + "%"
+		q = q.Where("title ILIKE ? OR author ILIKE ? OR isbn ILIKE ?", like, like, like)
+	}
+	if cat := c.Query("category"); cat != "" {
+		q = q.Where("category = ?", cat)
+	}
+	if c.Query("available") == "true" {
+		q = q.Where("available_copies > 0")
+	}
+	q.Find(&books)
+	c.JSON(http.StatusOK, gin.H{"data": books})
 }
 
 func AddBook(c *gin.Context) {
@@ -56,13 +67,40 @@ func AddBook(c *gin.Context) {
 	c.JSON(http.StatusCreated, book)
 }
 
+type IssueStudent struct {
+	User struct {
+		Name string `json:"name"`
+	} `json:"user"`
+}
+
 type IssueResponse struct {
-	ID        string         `json:"_id"`
-	Book      models.Book    `json:"book"`
-	IssuedAt  time.Time      `json:"issuedAt"`
-	DueDate   time.Time      `json:"dueDate"`
-	Status    string         `json:"status"`
-	Fine      float64        `json:"fine"`
+	ID         string       `json:"_id"`
+	Book       models.Book  `json:"book"`
+	Student    IssueStudent `json:"student"`
+	IssuedAt   time.Time    `json:"issuedAt"`
+	DueDate    time.Time    `json:"dueDate"`
+	ReturnedAt *time.Time   `json:"returnedAt"`
+	Status     string       `json:"status"`
+	Fine       float64      `json:"fine"`
+}
+
+func buildIssueResponse(issues []models.BookIssue) []IssueResponse {
+	result := make([]IssueResponse, 0, len(issues))
+	for _, i := range issues {
+		var s models.Student
+		db.DB.Preload("User").First(&s, "id = ?", i.StudentID)
+		var ir IssueResponse
+		ir.ID = i.ID
+		ir.Book = i.Book
+		ir.Student.User.Name = s.User.Name
+		ir.IssuedAt = i.IssuedAt
+		ir.DueDate = i.DueDate
+		ir.ReturnedAt = i.ReturnedAt
+		ir.Status = i.Status
+		ir.Fine = i.Fine
+		result = append(result, ir)
+	}
+	return result
 }
 
 func GetMyIssues(c *gin.Context) {
@@ -76,37 +114,17 @@ func GetMyIssues(c *gin.Context) {
 
 	var issues []models.BookIssue
 	db.DB.Preload("Book").Where("student_id = ?", student.ID).Order("issued_at desc").Find(&issues)
-
-	result := make([]IssueResponse, 0, len(issues))
-	for _, i := range issues {
-		result = append(result, IssueResponse{
-			ID:       i.ID,
-			Book:     i.Book,
-			IssuedAt: i.IssuedAt,
-			DueDate:  i.DueDate,
-			Status:   i.Status,
-			Fine:     i.Fine,
-		})
-	}
-	c.JSON(http.StatusOK, gin.H{"data": result})
+	c.JSON(http.StatusOK, gin.H{"data": buildIssueResponse(issues)})
 }
 
 func GetAllIssues(c *gin.Context) {
 	var issues []models.BookIssue
-	db.DB.Preload("Book").Order("issued_at desc").Find(&issues)
-
-	result := make([]IssueResponse, 0, len(issues))
-	for _, i := range issues {
-		result = append(result, IssueResponse{
-			ID:       i.ID,
-			Book:     i.Book,
-			IssuedAt: i.IssuedAt,
-			DueDate:  i.DueDate,
-			Status:   i.Status,
-			Fine:     i.Fine,
-		})
+	q := db.DB.Preload("Book").Order("issued_at desc")
+	if status := c.Query("status"); status != "" {
+		q = q.Where("status = ?", status)
 	}
-	c.JSON(http.StatusOK, result)
+	q.Find(&issues)
+	c.JSON(http.StatusOK, gin.H{"data": buildIssueResponse(issues)})
 }
 
 func IssueBook(c *gin.Context) {

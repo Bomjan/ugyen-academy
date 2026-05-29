@@ -36,7 +36,7 @@ export default function MyBooks() {
           { label:"Overdue",            value: issues.filter(i=>i.status==="overdue").length, color:"text-red-400" },
           { label:"Total Borrowed",     value: issues.length,   color:"text-white" },
         ].map(s=>(
-          <div key={s.label} className="bg-dark-2 border border-white/8 rounded-xl p-4 text-center">
+          <div key={s.label} className="bg-dark-2 border border-white/[0.05] rounded-xl p-4 text-center">
             <p className={`font-black text-2xl ${s.color}`}>{s.value}</p>
             <p className="text-white/35 text-[11px] mt-0.5">{s.label}</p>
           </div>
@@ -52,7 +52,7 @@ export default function MyBooks() {
                 {active.map(issue=>{
                   const Icon = statusIcon[issue.status];
                   return (
-                    <div key={issue._id} className={`bg-dark-2 border rounded-2xl p-5 flex items-start justify-between gap-4 ${issue.status==="overdue"?"border-red-500/20":"border-white/8"}`}>
+                    <div key={issue._id} className={`bg-dark-2 border rounded-2xl p-5 flex items-start justify-between gap-4 ${issue.status==="overdue"?"border-red-500/20":"border-white/[0.05]"}`}>
                       <div className="flex-1">
                         <h3 className="font-semibold text-[15px] text-white">{issue.book?.title}</h3>
                         <p className="text-white/40 text-[13px]">{issue.book?.author}</p>
@@ -76,16 +76,16 @@ export default function MyBooks() {
           {history.length > 0 && (
             <div>
               <h2 className="font-semibold text-white text-[14px] mb-3">Borrowing History</h2>
-              <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-x-auto">
+              <div className="bg-dark-2 border border-white/[0.05] rounded-2xl overflow-x-auto">
                 <table className="w-full text-[13px] min-w-[400px]">
-                  <thead><tr className="border-b border-white/5">
+                  <thead><tr className="border-b border-white/[0.03]">
                     {["Book","Author","Issued","Returned"].map(h=>(
                       <th key={h} className="text-left px-5 py-3 text-white/30 font-medium">{h}</th>
                     ))}
                   </tr></thead>
                   <tbody>
                     {history.map(issue=>(
-                      <tr key={issue._id} className="border-b border-white/5 hover:bg-white/[0.02]">
+                      <tr key={issue._id} className="border-b border-white/[0.03] hover:bg-white/[0.02]">
                         <td className="px-5 py-3 text-white">{issue.book?.title}</td>
                         <td className="px-5 py-3 text-white/40">{issue.book?.author}</td>
                         <td className="px-5 py-3 text-white/40">{fmt(issue.issuedAt)}</td>
