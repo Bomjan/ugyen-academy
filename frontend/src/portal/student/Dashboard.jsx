@@ -43,95 +43,93 @@ export default function StudentDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0C] text-white p-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-1">Welcome back, {user?.name?.split(' ')[0] || 'Student'}</h1>
-          <p className="text-white/40 text-sm">{user?.class ? `Class ${user.class}` : 'Ugyen Academy'}</p>
-        </div>
+    <div className="text-white">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold mb-1">Welcome back, {user?.name?.split(' ')[0] || 'Student'}</h1>
+        <p className="text-white/40 text-sm">{user?.class ? `Class ${user.class}` : 'Ugyen Academy'}</p>
+      </div>
 
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          {stats.map(({ icon: Icon, label, value, color, bg }) => (
-            <div key={label} className="bg-[#141416] border border-white/8 rounded-xl p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <div className={`w-8 h-8 ${bg} rounded-lg flex items-center justify-center`}>
-                  <Icon size={16} className={color} />
-                </div>
-                <span className="text-white/50 text-xs">{label}</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
+        {stats.map(({ icon: Icon, label, value, color, bg }) => (
+          <div key={label} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className={`w-8 h-8 ${bg} rounded-lg flex items-center justify-center`}>
+                <Icon size={16} className={color} />
               </div>
-              <p className={`text-2xl font-bold ${color}`}>{value}</p>
+              <span className="text-white/50 text-xs">{label}</span>
             </div>
-          ))}
-        </div>
+            <p className={`text-xl md:text-2xl font-bold ${color}`}>{value}</p>
+          </div>
+        ))}
+      </div>
 
-        <div className="grid grid-cols-3 gap-6">
-          <div className="col-span-2 space-y-6">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base font-semibold">Recent Progress</h2>
-                <Link to="/portal/student/progress" className="text-[#0066CC] text-xs hover:text-[#0077ED]">View all</Link>
-              </div>
-              {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentProgress.length === 0 ? (
-                <div className="bg-[#141416] border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No progress records yet.</div>
-              ) : (
-                <div className="bg-[#141416] border border-white/8 rounded-2xl overflow-hidden">
-                  {recentProgress.map((r, i) => (
-                    <div key={r._id || i} className={`flex items-center justify-between px-5 py-3 ${i < recentProgress.length - 1 ? 'border-b border-white/5' : ''}`}>
-                      <div>
-                        <p className="text-sm text-white font-medium">{r.subject}</p>
-                        <p className="text-xs text-white/40">{r.term} · {r.assessmentType}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-bold text-white">{r.marks}/100</p>
-                        <p className="text-xs text-white/40">{getGrade(r.marks)}</p>
-                      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-base font-semibold">Recent Progress</h2>
+              <Link to="/portal/student/progress" className="text-accent text-xs hover:text-accent-h">View all</Link>
+            </div>
+            {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentProgress.length === 0 ? (
+              <div className="bg-dark-2 border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No progress records yet.</div>
+            ) : (
+              <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-hidden">
+                {recentProgress.map((r, i) => (
+                  <div key={r._id || i} className={`flex items-center justify-between px-4 md:px-5 py-3 ${i < recentProgress.length - 1 ? 'border-b border-white/5' : ''}`}>
+                    <div>
+                      <p className="text-sm text-white font-medium">{r.subject}</p>
+                      <p className="text-xs text-white/40">{r.term} · {r.assessmentType}</p>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base font-semibold">Announcements</h2>
-                <Link to="/portal/student/announcements" className="text-[#0066CC] text-xs hover:text-[#0077ED]">View all</Link>
-              </div>
-              {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentAnnouncements.length === 0 ? (
-                <div className="bg-[#141416] border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No announcements.</div>
-              ) : (
-                <div className="space-y-2">
-                  {recentAnnouncements.map((a, i) => (
-                    <div key={a._id || i} className="bg-[#141416] border border-white/8 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-1">
-                        {a.pinned && <Pin size={11} className="text-[#0066CC]" />}
-                        <span className="text-sm font-medium">{a.title}</span>
-                      </div>
-                      <p className="text-white/50 text-xs line-clamp-2">{a.body}</p>
+                    <div className="text-right">
+                      <p className="text-sm font-bold text-white">{r.marks}/100</p>
+                      <p className="text-xs text-white/40">{getGrade(r.marks)}</p>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div>
-            <h2 className="text-base font-semibold mb-3">Quick Links</h2>
-            <div className="space-y-2">
-              {[
-                { to: '/portal/student/progress', label: 'Progress', desc: 'View your marks' },
-                { to: '/portal/student/attendance', label: 'Attendance', desc: 'Check attendance' },
-                { to: '/portal/student/fees', label: 'Fees', desc: 'Fee status' },
-                { to: '/portal/student/announcements', label: 'Announcements', desc: 'School news' }
-              ].map(l => (
-                <Link key={l.to} to={l.to} className="flex items-center justify-between bg-[#141416] border border-white/8 rounded-xl p-4 hover:border-[#0066CC]/40 hover:bg-[#0066CC]/5 transition-all group">
-                  <div>
-                    <p className="text-sm font-medium text-white">{l.label}</p>
-                    <p className="text-xs text-white/40">{l.desc}</p>
-                  </div>
-                  <ChevronRight size={16} className="text-white/20 group-hover:text-[#0066CC] transition-colors" />
-                </Link>
-              ))}
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-base font-semibold">Announcements</h2>
+              <Link to="/portal/student/announcements" className="text-accent text-xs hover:text-accent-h">View all</Link>
             </div>
+            {loading ? <p className="text-white/30 text-sm">Loading...</p> : recentAnnouncements.length === 0 ? (
+              <div className="bg-dark-2 border border-white/8 rounded-2xl p-6 text-center text-white/30 text-sm">No announcements.</div>
+            ) : (
+              <div className="space-y-2">
+                {recentAnnouncements.map((a, i) => (
+                  <div key={a._id || i} className="bg-dark-2 border border-white/8 rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-1">
+                      {a.pinned && <Pin size={11} className="text-accent" />}
+                      <span className="text-sm font-medium">{a.title}</span>
+                    </div>
+                    <p className="text-white/50 text-xs line-clamp-2">{a.body}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-base font-semibold mb-3">Quick Links</h2>
+          <div className="space-y-2">
+            {[
+              { to: '/portal/student/progress', label: 'Progress', desc: 'View your marks' },
+              { to: '/portal/student/attendance', label: 'Attendance', desc: 'Check attendance' },
+              { to: '/portal/student/fees', label: 'Fees', desc: 'Fee status' },
+              { to: '/portal/student/announcements', label: 'Announcements', desc: 'School news' }
+            ].map(l => (
+              <Link key={l.to} to={l.to} className="flex items-center justify-between bg-dark-2 border border-white/8 rounded-xl p-4 hover:border-accent/40 hover:bg-accent/5 transition-all group">
+                <div>
+                  <p className="text-sm font-medium text-white">{l.label}</p>
+                  <p className="text-xs text-white/40">{l.desc}</p>
+                </div>
+                <ChevronRight size={16} className="text-white/20 group-hover:text-accent transition-colors" />
+              </Link>
+            ))}
           </div>
         </div>
       </div>

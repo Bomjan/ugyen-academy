@@ -54,7 +54,7 @@ export default function Home() {
             Excellence<br />in Education.
           </h1>
 
-          <p className="text-white/50 text-[17px] font-light leading-relaxed max-w-[44ch] mx-auto mt-5 mb-10">
+          <p className="text-white/50 text-[15px] md:text-[17px] font-light leading-relaxed max-w-[44ch] mx-auto mt-5 mb-10">
             Bhutan's first international private school. Founded in 2002 in Punakha — 4 km from Punakha Dzong — by H.E. Yab Dasho Ugyen Dorji, father of Bhutan's four Queen Mothers.
           </p>
 
@@ -73,11 +73,11 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-4 gap-0 mt-16 max-w-xl mx-auto border border-white/8 rounded-2xl overflow-hidden bg-white/4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mt-16 max-w-xl mx-auto border border-white/8 rounded-2xl overflow-hidden bg-white/4">
             {stats.map(({ n, l }, i) => (
               <div
                 key={l}
-                className={`py-5 px-4 flex flex-col items-center ${i < stats.length - 1 ? "border-r border-white/8" : ""}`}
+                className={`py-5 px-4 flex flex-col items-center ${i % 2 === 0 ? "border-r border-white/8" : ""} ${i < 2 ? "border-b border-white/8 md:border-b-0" : ""} ${i < stats.length - 1 ? "md:border-r md:border-b-0" : "md:border-r-0"}`}
               >
                 <span className="font-bold text-white text-2xl leading-none">{n}</span>
                 <span className="text-white/35 text-[11px] mt-1.5 text-center">{l}</span>
@@ -195,16 +195,16 @@ export default function Home() {
           <div className="space-y-2">
             {news.map((n, i) => (
               <R key={n.title} d={`d${i + 1}`}>
-                <div className="group flex items-center gap-5 p-5 rounded-2xl bg-white border border-border hover:border-accent/30 hover:shadow-hover transition-all duration-200 cursor-pointer">
-                  <div className="shrink-0 w-24">
+                <div className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-5 rounded-2xl bg-white border border-border hover:border-accent/30 hover:shadow-hover transition-all duration-200 cursor-pointer">
+                  <div className="flex items-center justify-between sm:block sm:w-24 shrink-0">
                     <p className="text-[11px] font-semibold tracking-[0.1em] uppercase text-accent">{n.tag}</p>
-                    <p className="text-[11px] text-muted mt-0.5">{n.date}</p>
+                    <p className="text-[11px] text-muted sm:mt-0.5">{n.date}</p>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-[15px] text-text group-hover:text-accent transition-colors truncate">{n.title}</p>
-                    <p className="text-[13px] text-muted mt-0.5 truncate">{n.desc}</p>
+                    <p className="font-semibold text-[15px] text-text group-hover:text-accent transition-colors">{n.title}</p>
+                    <p className="text-[13px] text-muted mt-0.5 line-clamp-2 sm:truncate">{n.desc}</p>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-border group-hover:text-accent transition-colors shrink-0" />
+                  <ArrowUpRight className="hidden sm:block w-4 h-4 text-border group-hover:text-accent transition-colors shrink-0" />
                 </div>
               </R>
             ))}

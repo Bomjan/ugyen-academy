@@ -30,7 +30,7 @@ export default function MyBooks() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
           { label:"Currently Borrowed", value: active.length,   color:"text-yellow-400" },
           { label:"Overdue",            value: issues.filter(i=>i.status==="overdue").length, color:"text-red-400" },
@@ -76,8 +76,8 @@ export default function MyBooks() {
           {history.length > 0 && (
             <div>
               <h2 className="font-semibold text-white text-[14px] mb-3">Borrowing History</h2>
-              <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-hidden">
-                <table className="w-full text-[13px]">
+              <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-x-auto">
+                <table className="w-full text-[13px] min-w-[400px]">
                   <thead><tr className="border-b border-white/5">
                     {["Book","Author","Issued","Returned"].map(h=>(
                       <th key={h} className="text-left px-5 py-3 text-white/30 font-medium">{h}</th>

@@ -32,32 +32,31 @@ export default function ParentFees() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-[#0A0A0C] text-white p-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-1">Fees</h1>
-        <p className="text-white/40 text-sm mb-6">All children's fee records</p>
+    <div className="text-white">
+      <h1 className="text-2xl font-bold mb-1">Fees</h1>
+      <p className="text-white/40 text-sm mb-6">All children's fee records</p>
 
         {loading ? (
           <p className="text-white/30 text-sm">Loading...</p>
         ) : (
           <>
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="bg-[#141416] border border-white/8 rounded-xl p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-6">
+              <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
                 <p className="text-xs text-white/40 mb-2">Total Owed</p>
                 <p className="text-2xl font-bold text-red-400">Nu. {totalOwed.toLocaleString()}</p>
               </div>
-              <div className="bg-[#141416] border border-white/8 rounded-xl p-4">
+              <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
                 <p className="text-xs text-white/40 mb-2">Total Paid</p>
                 <p className="text-2xl font-bold text-green-400">Nu. {totalPaid.toLocaleString()}</p>
               </div>
-              <div className="bg-[#141416] border border-white/8 rounded-xl p-4">
+              <div className="bg-dark-2 border border-white/8 rounded-xl p-4">
                 <p className="text-xs text-white/40 mb-2">Overdue</p>
                 <p className={`text-2xl font-bold ${overdue > 0 ? 'text-red-400' : 'text-white/30'}`}>Nu. {overdue.toLocaleString()}</p>
               </div>
             </div>
 
             {fees.length === 0 ? (
-              <div className="bg-[#141416] border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No fee records found.</div>
+              <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No fee records found.</div>
             ) : Object.keys(byChild).length > 1 ? (
               Object.entries(byChild).map(([childName, childFees]) => (
                 <div key={childName} className="mb-6">
@@ -70,7 +69,6 @@ export default function ParentFees() {
             )}
           </>
         )}
-      </div>
     </div>
   );
 }
@@ -83,8 +81,8 @@ function FeeTable({ fees }) {
     return 'bg-red-500/15 text-red-400 border border-red-500/20';
   }
   return (
-    <div className="bg-[#141416] border border-white/8 rounded-2xl overflow-hidden">
-      <table className="w-full text-sm">
+    <div className="bg-dark-2 border border-white/8 rounded-2xl overflow-x-auto">
+      <table className="w-full text-sm min-w-[520px]">
         <thead>
           <tr className="border-b border-white/8">
             <th className="text-left px-5 py-3 text-white/40 font-normal">Description</th>

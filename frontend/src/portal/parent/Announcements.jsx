@@ -23,26 +23,25 @@ export default function ParentAnnouncements() {
   const sorted = [...announcements].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
 
   return (
-    <div className="min-h-screen bg-[#0A0A0C] text-white p-6">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-1">Announcements</h1>
-        <p className="text-white/40 text-sm mb-6">School news and updates</p>
+    <div className="text-white max-w-3xl">
+      <h1 className="text-2xl font-bold mb-1">Announcements</h1>
+      <p className="text-white/40 text-sm mb-6">School news and updates</p>
 
         {loading ? (
           <p className="text-white/30 text-sm">Loading...</p>
         ) : sorted.length === 0 ? (
-          <div className="bg-[#141416] border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No announcements at this time.</div>
+          <div className="bg-dark-2 border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No announcements at this time.</div>
         ) : (
           <div className="space-y-3">
             {sorted.map((a, i) => (
-              <div key={a._id || i} className={`bg-[#141416] border rounded-2xl p-5 ${a.pinned ? 'border-[#0066CC]/30' : 'border-white/8'}`}>
+              <div key={a._id || i} className={`bg-dark-2 border rounded-2xl p-5 ${a.pinned ? 'border-accent/30' : 'border-white/8'}`}>
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <div className="flex items-center gap-2">
-                    {a.pinned && <Pin size={13} className="text-[#0066CC] flex-shrink-0 mt-0.5" />}
-                    <h3 className="text-white font-semibold text-sm">{a.title}</h3>
+                  <div className="flex items-center gap-2 min-w-0">
+                    {a.pinned && <Pin size={13} className="text-accent flex-shrink-0 mt-0.5" />}
+                    <h3 className="text-white font-semibold text-sm truncate">{a.title}</h3>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
-                    <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${audienceBadge(a.targetAudience)}`}>{a.targetAudience || 'all'}</span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full capitalize hidden sm:inline ${audienceBadge(a.targetAudience)}`}>{a.targetAudience || 'all'}</span>
                     <span className="text-xs text-white/30">{a.createdAt ? fmt(a.createdAt) : ''}</span>
                   </div>
                 </div>
@@ -52,7 +51,6 @@ export default function ParentAnnouncements() {
             ))}
           </div>
         )}
-      </div>
     </div>
   );
 }
