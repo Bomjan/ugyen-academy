@@ -54,7 +54,7 @@ export default function Home() {
                 {i < 3 && (
                   <span key={`dot-${i}`}
                     className="text-[10px]"
-                    style={{color:"#C4943B", animation:`fadeUp .4s ${.16 + i*.12}s both`}}>
+                    style={{color:"#F65D06", animation:`fadeUp .4s ${.16 + i*.12}s both`}}>
                     ✦
                   </span>
                 )}
