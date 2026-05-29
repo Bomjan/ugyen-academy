@@ -199,7 +199,7 @@ export default function Home() {
                 className="font-black text-text tracking-tight leading-tight mb-6"
                 style={{ fontSize: "clamp(1.8rem,4vw,2.8rem)" }}
               >
-                Built for<br />a nation.
+                Built for a nation.
               </h2>
               <Link
                 to="/academics"
