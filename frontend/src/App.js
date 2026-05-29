@@ -35,7 +35,13 @@ import ParentAnnouncements from "./portal/parent/Announcements";
 import ParentFees          from "./portal/parent/Fees";
 
 // Admin
-import AdminDashboard from "./portal/admin/Dashboard";
+import AdminDashboard     from "./portal/admin/Dashboard";
+import AdminStudents      from "./portal/admin/Students";
+import AdminTeachers      from "./portal/admin/Teachers";
+import AdminFees          from "./portal/admin/Fees";
+import AdminAnnouncements from "./portal/admin/Announcements";
+import AdminAttendance    from "./portal/admin/Attendance";
+import AdminProgress      from "./portal/admin/Progress";
 
 // Library
 import LibraryCatalog from "./portal/library/LibraryCatalog";
@@ -109,7 +115,13 @@ function App() {
           <Route path="/portal/parent/fees"         element={<Portal><ParentFees /></Portal>} />
 
           {/* ── Admin portal ── */}
-          <Route path="/portal/admin" element={<Portal><AdminDashboard /></Portal>} />
+          <Route path="/portal/admin"                   element={<Portal><AdminDashboard /></Portal>} />
+          <Route path="/portal/admin/students"          element={<Portal><AdminStudents /></Portal>} />
+          <Route path="/portal/admin/teachers"          element={<Portal><AdminTeachers /></Portal>} />
+          <Route path="/portal/admin/fees"              element={<Portal><AdminFees /></Portal>} />
+          <Route path="/portal/admin/announcements"     element={<Portal><AdminAnnouncements /></Portal>} />
+          <Route path="/portal/admin/attendance"        element={<Portal><AdminAttendance /></Portal>} />
+          <Route path="/portal/admin/progress"          element={<Portal><AdminProgress /></Portal>} />
 
           {/* ── Library portal ── */}
           <Route path="/portal/library/catalog"  element={<Portal><LibraryCatalog /></Portal>} />
