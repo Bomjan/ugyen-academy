@@ -42,24 +42,35 @@ export default function Home() {
     <div>
       <section className="relative min-h-screen bg-dark flex flex-col items-center justify-center text-center px-6 pt-14">
         <div className="max-w-4xl mx-auto">
-          {/* WILL — single line word reveal */}
-          <div className="flex items-center justify-center flex-wrap gap-x-3 gap-y-2 mb-10">
-            {["Winners","Innovators","Learners","Leaders"].map((word, i) => (
-              <>
+          {/* WILL — 2×2 on mobile, single line on sm+ */}
+          <div className="mb-10">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-1.5 sm:hidden">
+              {["Winners","Innovators","Learners","Leaders"].map((word, i) => (
                 <span key={word}
-                  className="text-white/70 font-medium text-[13px] tracking-wide"
+                  className="text-white/70 font-medium text-[12px] tracking-wide text-center"
                   style={{animation:`fadeUp .4s ${.1 + i*.12}s both`}}>
                   {word}
                 </span>
-                {i < 3 && (
-                  <span key={`dot-${i}`}
-                    className="text-[10px]"
-                    style={{color:"#F65D06", animation:`fadeUp .4s ${.16 + i*.12}s both`}}>
-                    ✦
+              ))}
+            </div>
+            <div className="hidden sm:flex items-center justify-center gap-x-3">
+              {["Winners","Innovators","Learners","Leaders"].map((word, i) => (
+                <>
+                  <span key={word}
+                    className="text-white/70 font-medium text-[13px] tracking-wide"
+                    style={{animation:`fadeUp .4s ${.1 + i*.12}s both`}}>
+                    {word}
                   </span>
-                )}
-              </>
-            ))}
+                  {i < 3 && (
+                    <span key={`dot-${i}`}
+                      className="text-[10px]"
+                      style={{color:"#F65D06", animation:`fadeUp .4s ${.16 + i*.12}s both`}}>
+                      ✦
+                    </span>
+                  )}
+                </>
+              ))}
+            </div>
           </div>
 
           <h1
