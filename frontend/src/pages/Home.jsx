@@ -36,7 +36,7 @@ function WillCycle() {
   }, [display, phase, wordIdx]);
 
   return (
-    <div className="flex items-center justify-center gap-2 mb-10">
+    <div className="flex items-center justify-center gap-2 mb-10 h-6">
       <span className="text-white/30 text-[13px] font-medium shrink-0">A School of</span>
       <span className="font-wordmark font-bold text-[15px] inline-flex items-center gap-0.5"
         style={{color:"#F65D06", minWidth:"8ch"}}>
