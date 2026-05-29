@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import {
   LayoutDashboard, TrendingUp, CalendarCheck, Megaphone,
-  CreditCard, Users, LogOut, BookMarked, BookOpen, X, MoreHorizontal
+  CreditCard, Users, GraduationCap, LogOut, BookMarked, BookOpen, X, MoreHorizontal
 } from "lucide-react";
 import { useState } from "react";
 
@@ -10,10 +10,11 @@ const navByRole = {
   admin: [
     { to: "/portal/admin",                icon: LayoutDashboard, label: "Dashboard" },
     { to: "/portal/admin/students",       icon: Users,           label: "Students" },
-    { to: "/portal/admin/progress",       icon: TrendingUp,      label: "Progress" },
-    { to: "/portal/admin/attendance",     icon: CalendarCheck,   label: "Attendance" },
-    { to: "/portal/admin/announcements",  icon: Megaphone,       label: "Notices" },
+    { to: "/portal/admin/teachers",       icon: GraduationCap,   label: "Teachers" },
     { to: "/portal/admin/fees",           icon: CreditCard,      label: "Fees" },
+    { to: "/portal/admin/announcements",  icon: Megaphone,       label: "Notices" },
+    { to: "/portal/admin/attendance",     icon: CalendarCheck,   label: "Attendance" },
+    { to: "/portal/admin/progress",       icon: TrendingUp,      label: "Progress" },
   ],
   teacher: [
     { to: "/portal/teacher",              icon: LayoutDashboard, label: "Dashboard" },
