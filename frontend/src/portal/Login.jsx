@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 export default function Login() {
   const [form, setForm]       = useState({ email: "", password: "" });
@@ -31,102 +31,142 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-dark flex">
-      {/* Left panel — branding */}
-      <div className="hidden lg:flex lg:w-[420px] xl:w-[480px] flex-col justify-between p-12 relative overflow-hidden shrink-0"
-        style={{ background: "linear-gradient(160deg, #0d0d10 0%, #0A0A0C 60%, #060608 100%)" }}>
-        {/* Accent top line */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-accent" />
-        {/* Subtle glow */}
-        <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 60% 40% at 40% 30%, rgba(0,102,204,0.07) 0%, transparent 70%)" }} />
 
-        <Link to="/" className="flex items-center gap-3 group relative z-10">
-          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-10 w-10 object-cover rounded-full shrink-0" />
-          <span className="font-wordmark font-bold text-[18px] text-white tracking-tight">Ugyen Academy</span>
-        </Link>
+      {/* ── Left panel ── */}
+      <div className="hidden lg:flex w-[52%] xl:w-1/2 flex-col relative overflow-hidden shrink-0"
+        style={{ background: "linear-gradient(150deg, #0c1a2e 0%, #0A0A0C 55%, #080808 100%)" }}>
 
-        <div className="relative z-10 space-y-6">
-          <div>
-            <p className="text-[11px] font-semibold tracking-widest uppercase text-accent mb-4">School Portal</p>
-            <h2 className="text-4xl font-black text-white leading-tight tracking-tight">
-              Your school,<br />at your fingertips.
-            </h2>
-          </div>
-          <p className="text-white/35 text-[14px] leading-relaxed max-w-xs">
-            Manage progress, attendance, fees, and announcements — all in one place for students, parents, and staff.
+        {/* Accent top bar */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent via-accent to-transparent" />
+
+        {/* Soft glow */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 70% 55% at 25% 35%, rgba(0,102,204,0.13) 0%, transparent 65%)" }} />
+
+        {/* Logo */}
+        <div className="relative z-10 p-10 xl:p-12">
+          <Link to="/" className="inline-flex items-center gap-3 group">
+            <img src="/ua-logo.jpg" alt="Ugyen Academy"
+              className="h-10 w-10 object-cover rounded-full ring-2 ring-white/10 group-hover:ring-accent/50 transition-all shrink-0" />
+            <span className="font-wordmark font-bold text-[17px] text-white tracking-tight">Ugyen Academy</span>
+          </Link>
+        </div>
+
+        {/* Main copy */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-10 xl:px-12 pb-8">
+          <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-accent mb-5">School Portal</p>
+          <h2 className="text-[2.6rem] xl:text-5xl font-black text-white leading-[1.1] tracking-tight mb-6">
+            Your school,<br />at your<br />fingertips.
+          </h2>
+          <p className="text-white/35 text-[14px] leading-relaxed max-w-[300px] mb-8">
+            Progress, attendance, fees and announcements — all in one place for students, parents and staff.
           </p>
-          <div className="flex flex-wrap gap-2 pt-2">
+
+          {/* Role chips */}
+          <div className="flex flex-wrap gap-2">
             {["Students", "Parents", "Teachers", "Admin"].map(r => (
-              <span key={r} className="text-[11px] text-white/40 border border-white/[0.05] rounded-full px-3 py-1">{r}</span>
+              <span key={r}
+                className="text-[11px] font-medium text-white/40 border border-white/[0.08] rounded-full px-3.5 py-1">
+                {r}
+              </span>
+            ))}
+          </div>
+
+          {/* Divider + school stats */}
+          <div className="mt-10 pt-8 border-t border-white/[0.06] grid grid-cols-3 gap-6">
+            {[
+              { value: "47",        label: "Faculty" },
+              { value: "VII–XII",   label: "Classes" },
+              { value: "Est. 2002", label: "Punakha, Bhutan" },
+            ].map(s => (
+              <div key={s.label}>
+                <p className="text-[18px] font-black text-white">{s.value}</p>
+                <p className="text-white/30 text-[11px] mt-0.5">{s.label}</p>
+              </div>
             ))}
           </div>
         </div>
 
-        <p className="text-white/20 text-[12px] relative z-10">
-          Khuruthang, Punakha · Est. 2002
-        </p>
+        {/* Motto footer */}
+        <div className="relative z-10 px-10 xl:px-12 pb-10">
+          <p className="text-[11px] text-white/20 tracking-wide">
+            "A School of <span className="text-white/35">W</span>inners,{" "}
+            <span className="text-white/35">I</span>nnovators,{" "}
+            <span className="text-white/35">L</span>earners,{" "}
+            <span className="text-white/35">L</span>eaders"
+          </p>
+        </div>
       </div>
 
-      {/* Right panel — form */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 bg-dark">
+      {/* ── Right panel — form ── */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-12"
+        style={{ background: "#0e0e11" }}>
+
         {/* Mobile logo */}
         <Link to="/" className="lg:hidden flex items-center gap-2.5 mb-10">
-          <img src="/ua-logo.jpg" alt="Ugyen Academy" className="h-9 w-9 object-cover rounded-full shrink-0" />
+          <img src="/ua-logo.jpg" alt="Ugyen Academy"
+            className="h-9 w-9 object-cover rounded-full ring-2 ring-white/10 shrink-0" />
           <span className="font-wordmark font-bold text-[16px] text-white tracking-tight">Ugyen Academy</span>
         </Link>
 
-        <div className="w-full max-w-[360px]">
+        <div className="w-full max-w-[340px]">
+
+          {/* Heading */}
           <div className="mb-8">
-            <h1 className="text-2xl font-black text-white tracking-tight mb-1.5">Sign in</h1>
-            <p className="text-white/35 text-[14px]">Use your school-issued credentials.</p>
+            <h1 className="text-[26px] font-black text-white tracking-tight mb-1.5">Sign in</h1>
+            <p className="text-white/35 text-[13px]">Use your school-issued credentials.</p>
           </div>
 
           <form onSubmit={submit} className="space-y-4">
             {error && (
-              <div className="bg-red-500/8 border border-red-500/20 text-red-400 text-[13px] px-4 py-3 rounded-xl">
+              <div className="bg-red-500/8 border border-red-500/20 text-red-400 text-[13px] px-4 py-3 rounded-xl leading-snug">
                 {error}
               </div>
             )}
 
             <div className="space-y-1.5">
-              <label className="block text-[12px] font-medium text-white/40 tracking-wide">Email</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-widest text-white/30">Email</label>
               <input
                 type="email" required
                 value={form.email}
                 onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                placeholder="you@school.edu.bt"
-                className="w-full bg-dark-2 border border-white/[0.05] rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-dark-3 transition-all"
+                placeholder="you@ua.edu.bt"
+                className="w-full bg-dark-2 border border-white/[0.07] rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent/60 focus:bg-[#161618] transition-all"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-[12px] font-medium text-white/40 tracking-wide">Password</label>
+              <label className="block text-[11px] font-semibold uppercase tracking-widest text-white/30">Password</label>
               <div className="relative">
                 <input
                   type={show ? "text" : "password"} required
                   value={form.password}
                   onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
                   placeholder="••••••••"
-                  className="w-full bg-dark-2 border border-white/[0.05] rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-dark-3 transition-all pr-11"
+                  className="w-full bg-dark-2 border border-white/[0.07] rounded-xl px-4 py-3 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-accent/60 focus:bg-[#161618] transition-all pr-11"
                 />
                 <button type="button" onClick={() => setShow(!show)}
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors p-0.5">
-                  {show ? <EyeOff size={16} /> : <Eye size={16} />}
+                  {show ? <EyeOff size={15} /> : <Eye size={15} />}
                 </button>
               </div>
             </div>
 
             <button type="submit" disabled={loading}
-              className="w-full bg-accent hover:bg-accent-h disabled:opacity-40 text-white font-semibold text-[14px] py-3 rounded-xl transition-colors mt-2">
+              className="w-full bg-accent hover:bg-accent-h disabled:opacity-40 text-white font-semibold text-[14px] py-3 rounded-xl transition-colors mt-1 tracking-wide">
               {loading ? "Signing in…" : "Sign In"}
             </button>
           </form>
 
-          <p className="text-center text-[12px] text-white/20 mt-8">
-            <Link to="/" className="hover:text-white/40 transition-colors">← Back to ugyen academy</Link>
-          </p>
+          <div className="mt-8 pt-6 border-t border-white/[0.05]">
+            <Link to="/" className="flex items-center gap-1.5 text-[12px] text-white/25 hover:text-white/50 transition-colors">
+              <ArrowLeft size={13} />
+              Back to Ugyen Academy
+            </Link>
+          </div>
         </div>
       </div>
+
     </div>
   );
 }
