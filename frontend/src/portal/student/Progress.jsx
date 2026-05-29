@@ -1,0 +1,153 @@
+import { useState, useEffect } from 'react';
+import api from '../../lib/api';
+
+const TERMS = ['All', 'Term 1', 'Term 2', 'Term 3', 'Annual'];
+
+function getGrade(m) {
+  if (m >= 90) return 'A+'; if (m >= 80) return 'A'; if (m >= 70) return 'B+';
+  if (m >= 60) return 'B'; if (m >= 50) return 'C'; if (m >= 40) return 'D'; return 'F';
+}
+
+function gradeColor(g) {
+  if (g === 'A+' || g === 'A') return 'text-green-400';
+  if (g === 'B+' || g === 'B') return 'text-blue-400';
+  if (g === 'C') return 'text-yellow-400';
+  if (g === 'D') return 'text-orange-400';
+  return 'text-red-400';
+}
+
+function gradeBg(g) {
+  if (g === 'A+' || g === 'A') return 'bg-green-500/15';
+  if (g === 'B+' || g === 'B') return 'bg-blue-500/15';
+  if (g === 'C') return 'bg-yellow-500/15';
+  if (g === 'D') return 'bg-orange-500/15';
+  return 'bg-red-500/15';
+}
+
+const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+export default function StudentProgress() {
+  const [records, setRecords] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [term, setTerm] = useState('All');
+
+  useEffect(() => {
+    api.get('/progress/my')
+      .then(r => setRecords(r.data))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  const filtered = term === 'All' ? records : records.filter(r => r.term === term);
+
+  const bySubject = filtered.reduce((acc, r) => {
+    if (!acc[r.subject]) acc[r.subject] = [];
+    acc[r.subject].push(r);
+    return acc;
+  }, {});
+
+  const subjectAvgs = Object.entries(bySubject).map(([subject, recs]) => ({
+    subject,
+    avg: Math.round(recs.reduce((s, r) => s + r.marks, 0) / recs.length),
+    count: recs.length
+  }));
+
+  const overall = filtered.length ? Math.round(filtered.reduce((s, r) => s + r.marks, 0) / filtered.length) : 0;
+
+  return (
+    <div className="min-h-screen bg-[#0A0A0C] text-white p-6">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-2xl font-bold mb-1">My Progress</h1>
+        <p className="text-white/40 text-sm mb-6">Your academic performance overview</p>
+
+        <div className="flex gap-2 mb-6">
+          {TERMS.map(t => (
+            <button key={t} onClick={() => setTerm(t)} className={`px-4 py-1.5 rounded-xl text-sm font-medium transition-all ${term === t ? 'bg-[#0066CC] text-white' : 'bg-[#141416] text-white/50 border border-white/8 hover:border-white/20'}`}>
+              {t}
+            </button>
+          ))}
+        </div>
+
+        {loading ? (
+          <p className="text-white/30 text-sm">Loading...</p>
+        ) : (
+          <>
+            {filtered.length > 0 && (
+              <div className="bg-[#141416] border border-white/8 rounded-2xl p-5 mb-6">
+                <p className="text-white/50 text-xs mb-1">Overall Average</p>
+                <p className={`text-5xl font-bold ${gradeColor(getGrade(overall))}`}>{overall}<span className="text-2xl">%</span></p>
+                <p className="text-white/30 text-xs mt-1">{filtered.length} records · {Object.keys(bySubject).length} subjects</p>
+              </div>
+            )}
+
+            {subjectAvgs.length > 0 && (
+              <div className="mb-6">
+                <h2 className="text-base font-semibold mb-3">By Subject</h2>
+                <div className="grid grid-cols-2 gap-3">
+                  {subjectAvgs.map(({ subject, avg, count }) => {
+                    const g = getGrade(avg);
+                    const barWidth = Math.max(4, avg);
+                    return (
+                      <div key={subject} className="bg-[#141416] border border-white/8 rounded-xl p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium text-white">{subject}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-white/40 text-xs">{count} records</span>
+                            <span className={`text-sm font-bold ${gradeColor(g)}`}>{g}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="flex-1 bg-white/5 rounded-full h-1.5">
+                            <div className={`h-1.5 rounded-full ${gradeBg(g)}`} style={{ width: `${barWidth}%` }} />
+                          </div>
+                          <span className="text-white font-bold text-sm w-10 text-right">{avg}%</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            <div>
+              <h2 className="text-base font-semibold mb-3">All Records</h2>
+              {filtered.length === 0 ? (
+                <div className="bg-[#141416] border border-white/8 rounded-2xl p-8 text-center text-white/30 text-sm">No records for {term === 'All' ? 'any term' : term}.</div>
+              ) : (
+                <div className="bg-[#141416] border border-white/8 rounded-2xl overflow-hidden">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/8">
+                        <th className="text-left px-5 py-3 text-white/40 font-normal">Subject</th>
+                        <th className="text-left px-5 py-3 text-white/40 font-normal">Term</th>
+                        <th className="text-left px-5 py-3 text-white/40 font-normal">Type</th>
+                        <th className="text-left px-5 py-3 text-white/40 font-normal">Marks</th>
+                        <th className="text-left px-5 py-3 text-white/40 font-normal">Grade</th>
+                        <th className="text-left px-5 py-3 text-white/40 font-normal">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filtered.map((r, i) => {
+                        const g = getGrade(r.marks);
+                        return (
+                          <tr key={r._id || i} className="border-b border-white/5 hover:bg-white/2">
+                            <td className="px-5 py-3 text-white">{r.subject}</td>
+                            <td className="px-5 py-3 text-white/60">{r.term}</td>
+                            <td className="px-5 py-3 text-white/60">{r.assessmentType}</td>
+                            <td className="px-5 py-3 text-white font-medium">{r.marks}/100</td>
+                            <td className={`px-5 py-3 font-bold ${gradeColor(g)}`}>{g}</td>
+                            <td className="px-5 py-3 text-white/40">{r.createdAt ? fmt(r.createdAt) : '—'}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
