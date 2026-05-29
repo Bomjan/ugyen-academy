@@ -34,14 +34,14 @@ export default function Login() {
 
       {/* ── Left panel ── */}
       <div className="hidden lg:flex w-[52%] xl:w-1/2 flex-col relative overflow-hidden shrink-0"
-        style={{ background: "linear-gradient(150deg, #0c1a2e 0%, #0A0A0C 55%, #080808 100%)" }}>
+        style={{ background: "linear-gradient(150deg, #140e00 0%, #0A0A0C 55%, #080808 100%)" }}>
 
-        {/* Accent top bar */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent via-accent to-transparent" />
+        {/* Accent top bar — school gold */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-accent to-transparent" />
 
-        {/* Soft glow */}
+        {/* Soft gold glow */}
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 55% at 25% 35%, rgba(0,102,204,0.13) 0%, transparent 65%)" }} />
+          style={{ background: "radial-gradient(ellipse 70% 55% at 25% 35%, rgba(200,146,10,0.10) 0%, transparent 65%)" }} />
 
         {/* Logo */}
         <div className="relative z-10 p-10 xl:p-12">
@@ -54,7 +54,7 @@ export default function Login() {
 
         {/* Main copy */}
         <div className="relative z-10 flex-1 flex flex-col justify-center px-10 xl:px-12 pb-8">
-          <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-accent mb-5">School Portal</p>
+          <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-gold mb-5">School Portal</p>
           <h2 className="text-[2.6rem] xl:text-5xl font-black text-white leading-[1.1] tracking-tight mb-6">
             Your school,<br />at your<br />fingertips.
           </h2>

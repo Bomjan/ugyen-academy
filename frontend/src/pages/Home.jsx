@@ -9,7 +9,7 @@ function R({ children, d = "", className = "" }) {
 }
 
 const features = [
-  { title: "Top-Ranked Nationally", desc: "Consistently among Bhutan's highest BCSE and BHSEC results across Science, Commerce, and Arts.", color: "#0066CC" },
+  { title: "Top-Ranked Nationally", desc: "Consistently among Bhutan's highest BCSE and BHSEC results across Science, Commerce, and Arts.", color: "#C8920A" },
   { title: "Bhutan Premier League", desc: "The only school in Bhutan with its own professional football club — Ugyen Academy FC, 2013 National League Champions.", color: "#10B981" },
   { title: "International Campus", desc: "Students from Bhutan, India, Thailand, and South Korea learn together in Punakha's most diverse school.", color: "#8B5CF6" },
   { title: "Founded by Royalty", desc: "Established by H.E. Yab Dasho Ugyen Dorji (1925–2019), father of Bhutan's four Queen Mothers and co-founded by Yum Thinley Choden.", color: "#F59E0B" },

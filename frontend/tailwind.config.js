@@ -11,8 +11,11 @@ module.exports = {
         border:    "#E5E5EA",
         text:      "#1D1D1F",
         muted:     "#6E6E73",
-        accent:    "#0066CC",
-        "accent-h":"#0077ED",
+        accent:    "#C8920A",   /* school gold — refined from logo yellow band  */
+        "accent-h":"#DCA50C",   /* hover — brighter gold                         */
+        gold:      "#F5C800",   /* pure logo yellow — for decorative use         */
+        orange:    "#F06400",   /* logo name-band orange — badges, highlights    */
+        navy:      "#00004A",   /* logo outline navy                             */
       },
       fontFamily: {
         sans:    ["'Inter'",            "system-ui", "sans-serif"],
