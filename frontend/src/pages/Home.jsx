@@ -7,31 +7,42 @@ import { useReveal } from "../hooks/useReveal";
 const WILL = ["Winners", "Innovators", "Learners", "Leaders"];
 
 function WillCycle() {
-  const [idx, setIdx]       = useState(0);
-  const [exiting, setExiting] = useState(false);
+  const [display, setDisplay] = useState("");
+  const [wordIdx, setWordIdx] = useState(0);
+  const [phase, setPhase]     = useState("typing"); // typing | holding | deleting
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setExiting(true);
-      setTimeout(() => { setIdx(i => (i + 1) % 4); setExiting(false); }, 300);
-    }, 2200);
-    return () => clearInterval(id);
-  }, []);
+    const word = WILL[wordIdx];
+
+    if (phase === "typing") {
+      if (display.length < word.length) {
+        const t = setTimeout(() => setDisplay(word.slice(0, display.length + 1)), 80);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => setPhase("deleting"), 1400);
+        return () => clearTimeout(t);
+      }
+    }
+
+    if (phase === "deleting") {
+      if (display.length > 0) {
+        const t = setTimeout(() => setDisplay(d => d.slice(0, -1)), 45);
+        return () => clearTimeout(t);
+      } else {
+        setWordIdx(i => (i + 1) % WILL.length);
+        setPhase("typing");
+      }
+    }
+  }, [display, phase, wordIdx]);
 
   return (
-    <div className="flex items-center justify-center gap-2 mb-10 overflow-hidden">
+    <div className="flex items-center justify-center gap-2 mb-10">
       <span className="text-white/30 text-[13px] font-medium shrink-0">A School of</span>
-      <span
-        key={exiting ? `out-${idx}` : `in-${idx}`}
-        className="font-wordmark font-bold text-[15px]"
-        style={{
-          color: "#F65D06",
-          display: "inline-block",
-          animation: exiting
-            ? "wordOut .28s ease forwards"
-            : "wordIn .42s cubic-bezier(.16,1,.3,1) forwards",
-        }}>
-        {WILL[idx]}
+      <span className="font-wordmark font-bold text-[15px] inline-flex items-center gap-0.5"
+        style={{color:"#F65D06", minWidth:"8ch"}}>
+        {display}
+        <span className="w-[2px] h-[14px] rounded-sm bg-current opacity-80"
+          style={{animation:"blink .8s step-end infinite"}} />
       </span>
     </div>
   );
